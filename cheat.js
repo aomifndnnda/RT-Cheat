@@ -534,8 +534,8 @@ AirBreak.process = function (localPlayer)
     {
         airBreak.speed += 2;
     }
-if(airBreak.speed >= 250){
-airBreak.speed = 250
+if(airBreak.speed >= 200){
+airBreak.speed = 200
 }
     if (Utils.isParkourMode())
     {
