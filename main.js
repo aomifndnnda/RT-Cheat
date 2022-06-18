@@ -1,3 +1,4 @@
+
 class Utils
 {
     getRootElement      = null; // args: void
