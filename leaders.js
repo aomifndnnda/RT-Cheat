@@ -1,19 +1,3 @@
-// ==UserScript==
-// @name         RT Hacks Leaders Edition
-// @version      0.1
-// @description  Leaders Edition for RT Cheat
-// @author       Akz
-// @match        https://*.tankionline.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=tankionline.com
-
-// @require      http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
-// @require      https://raw.githubusercontent.com/brunoinds/isKeyPressed/main/isKeyPressed.min.js
-// @require      
-// @grant        GM_xmlhttpRequest
-
-// ==/UserScript==
-
-
 class Utils
 {
     getRootElement      = null; // args: void
