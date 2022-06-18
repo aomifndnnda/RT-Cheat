@@ -952,7 +952,7 @@ let autoMining = false
 
 document.addEventListener('keyup', (e) =>
 {
-    if (e.keyCode == 53 && Utils.isGameReady() && Utils.isNotOpenChat())
+    if (e.keyCode == 35 && Utils.isGameReady() && Utils.isNotOpenChat())
     {
         autoMining = !autoMining;
     }
@@ -1013,6 +1013,8 @@ Clicker.process = function (localPlayer)
     {
         gameActions.at(9).at(1).wasPressed = true;
         gameActions.at(9).at(1).wasReleased = true;
+        gameActions.at(5).at(1).wasPressed = true;
+        gameActions.at(5).at(1).wasReleased = true;
     }
 }
 
@@ -1193,7 +1195,7 @@ let cheatMenuCode = `
             <p>Striker Aimbot: <font id="aimBotStateColor" color="red"><label id="aimBotState">OFF</label></font></p>
             <p>Striker One-Shot: <font id="strikerHackStateColor" color="red"><label id="strikerHackState">OFF</label></font></p>
             <p>Remove Mines: <font id="removeMinesStateColor" color="red"><label id="removeMinesState">OFF</label></font></p>
-            <p>Mines: <font id="autoMiningStateColor" color="red"><label id="autoMiningState">OFF</label></font></p>
+            <p>Clicker: <font id="autoMiningStateColor" color="red"><label id="autoMiningState">OFF</label></font></p>
             <p>Rapid Update: <font id="rapidStateColor" color="red"><label id="rapidState">OFF</label></font></p>
 		</div>
 
