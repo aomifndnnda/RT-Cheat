@@ -1344,7 +1344,7 @@ let cheatMenuCode = `
 
 		<div id="gameStates" style="display: none;">
             <p>FlyHack: <font id="airBreakStateColor" color="red"><label id="airBreakState">OFF</label></font></p>
-	    <p>FlyHack Speed: <font color="#purple"><label id="airBreakSpeed">50</label></font></p>
+	    <p>FlyHack Speed: <font color="#000001"><label id="airBreakSpeed">50</label></font></p>
 	    <p>Anti-Aim: <font id="antiAimStateColor" color="red"><label id="antiAimState">OFF</label></font></p>
             <p>Striker Aimbot: <font id="aimBotStateColor" color="red"><label id="aimBotState">OFF</label></font></p>
             <p>Striker One-Shot: <font id="strikerHackStateColor" color="red"><label id="strikerHackState">OFF</label></font></p>
