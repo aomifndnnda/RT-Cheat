@@ -1314,7 +1314,7 @@ let cheatMenuCode = `
 	<style>
         .shizoval {
             left: 1%;
-            top: 25%;
+            top: 15%;
             position: absolute;
             z-index: 1000;
             display: flex;
