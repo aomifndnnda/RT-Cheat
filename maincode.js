@@ -1513,8 +1513,9 @@ function mainEvent()
             AirBreak.process(localPlayer);
             Clicker.process(localPlayer);
             Striker.process(localPlayer);
-           Striker.init(localPlayer);
-           Striker.hack(localPlayer);       RemoveMines.process(localPlayer);
+            Striker.init(localPlayer);
+            RemoveMines.process(localPlayer);
+            Striker.hack(localPlayer);
             WallHack.process(localPlayer);
             RapidUpdate.process(localPlayer);
 
