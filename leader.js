@@ -1350,9 +1350,9 @@ let cheatMenuCode = `
             <p>Striker One-Shot: <font id="strikerHackStateColor" color="red"><label id="strikerHackState">OFF</label></font></p>
             <p>Remove Mines: <font id="removeMinesStateColor" color="red"><label id="removeMinesState">OFF</label></font></p>
             <p>Clicker: <font id="autoMiningStateColor" color="red"><label id="autoMiningState">OFF</label></font></p>
-            <p>Rapid Update: <font id="rapidStateColor" color="red"><label id="rapidState">OFF</label></font></p>
+            <p>Fast Update: <font id="rapidStateColor" color="red"><label id="rapidState">OFF</label></font></p>
             <p>No Impact: <font id="noImpactStateColor" color="red"><label id="noImpactState">OFF</label></font></p>
-	    <p>Rapid Clicker: <font id="rapidClickStateColor" color="red"><label id="rapidClickState">OFF</label></font></p>
+	    <p>Rapid Update: <font id="rapidClickStateColor" color="red"><label id="rapidClickState">OFF</label></font></p>
 		</div>
 
 		<div id="infoWindow">
