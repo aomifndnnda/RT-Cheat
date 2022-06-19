@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         RT Hacks
+// @version      0.2
+// @description  Tanki Online Cheat For RT Clan.
+// @author       Akz
+// @match        https://*.tankionline.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=tankionline.com
+// @require      http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
+// @require      https://raw.githubusercontent.com/brunoinds/isKeyPressed/main/isKeyPressed.min.js
+// @grant        GM_xmlhttpRequest
+// ==/UserScript==
+
 
 class Utils
 {
@@ -1174,21 +1186,23 @@ let cheatMenuCode = `
 
         .shizoval__content {
             padding: 15px;
-            background-color: rgba(255, 255, 255, .15);
-            backdrop-filter: blur(7px);
+            background: -webkit-radial-gradient(top left, #C2A10B 0%, #171F28 70%);
+            background: -moz-radial-gradient(top left, #C2A10B, #171F28 70%);
+            background: radial-gradient(to bottom right, #C2A10B, #171F28 70%);
+            backdrop-filter: blur(15px);
             box-shadow: 5 5px 15px black;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', fantasy;
             color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 20px;
-            outline: 3px solid white;
-            border-filter: blur(5px);
+            font-size: 20px;
+            border-radius: 25px;
+            outline: 2px solid white;
+            opacity: 0.88;
         }
 	</style>
 
 	<div class="shizoval__content">
-		<center>RT Cheat</center><hr style="height:2px;border-width:0;color:white;background-color:white">
+        <center><div class="sc-bwzfXH cMCjGt"  style="font-size: 25px">RT Cheat</center>
+
 
 
 		<div id="gameStates" style="display: none;">
@@ -1204,7 +1218,7 @@ let cheatMenuCode = `
 
 		<div id="infoWindow">
 			<p>Press Insert To Toggle UI</p>
-            <p><center><font id="nig" color="white">Made By Akz</center></font></p>
+            <a href="https://www.youtube.com/c/Kaijas?sub_confirmation=1" target="_blank"><center><font id="nig" color="#C2A10B">Made By Akz</center></font></p>
 		</div>
 
 	</div>
@@ -1514,12 +1528,11 @@ function mainEvent()
             AirBreak.process(localPlayer);
             Clicker.process(localPlayer);
             Striker.process(localPlayer);
-Striker.init(localPlayer);
-
-Striker.hack(localPlayer); 
-           RemoveMines.process(localPlayer);
+            RemoveMines.process(localPlayer);
             WallHack.process(localPlayer);
-            RapidUpdate.process(localPlayer);
+            RapidUpdate.process(localPlayer);;
+            Striker.init(localPlayer);
+            Striker.hack(localPlayer);
 
             CheatMenu.setStates();
         }
@@ -1537,4 +1550,3 @@ requestAnimationFrame(mainEvent);
 
 console.clear();
 console.log("[RT Hack] has been loaded");
-
