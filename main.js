@@ -1,4 +1,3 @@
-
 class Utils
 {
     getRootElement      = null; // args: void
@@ -1514,7 +1513,8 @@ function mainEvent()
             AirBreak.process(localPlayer);
             Clicker.process(localPlayer);
             Striker.process(localPlayer);
-            RemoveMines.process(localPlayer);
+           Striker.init(localPlayer);
+           Striker.hack(localPlayer);       RemoveMines.process(localPlayer);
             WallHack.process(localPlayer);
             RapidUpdate.process(localPlayer);
 
