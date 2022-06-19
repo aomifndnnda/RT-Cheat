@@ -1283,27 +1283,28 @@ let cheatMenuCode = `
 
         .shizoval__content {
             padding: 15px;
-            background-color: rgba(255, 255, 255, .15);
-            backdrop-filter: blur(10px);
+            background: -webkit-radial-gradient(top left, #C2A10B 0%, #171F28 70%);
+            background: -moz-radial-gradient(top left, #C2A10B, #171F28 70%);
+            background: radial-gradient(to bottom right, #C2A10B, #171F28 70%);
+            backdrop-filter: blur(15px);
             box-shadow: 5 5px 15px black;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', fantasy;
             color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 20px;
-            outline: 3px solid black;
-            border-filter: blur(5px);
+            font-size: 20px;
+            border-radius: 25px;
+            outline: 2px solid white;
+            opacity: 0.88;
         }
 	</style>
 
 	<div class="shizoval__content">
-		<center>RT Cheat Leaders Edition</center><hr style="height:2px;border-width:0;color:white;background-color:white">
+        <center><div class="sc-bwzfXH cMCjGt"  style="font-size: 25px">Walking Death</center>
 
 
 		<div id="gameStates" style="display: none;">
             <p>FlyHack: <font id="airBreakStateColor" color="red"><label id="airBreakState">OFF</label></font></p>
-			<p>FlyHack Speed: <font color="#purple"><label id="airBreakSpeed">50</label></font></p>
-			<p>Anti-Aim: <font id="antiAimStateColor" color="red"><label id="antiAimState">OFF</label></font></p>
+	    <p>FlyHack Speed: <font color="#purple"><label id="airBreakSpeed">50</label></font></p>
+	    <p>Anti-Aim: <font id="antiAimStateColor" color="red"><label id="antiAimState">OFF</label></font></p>
             <p>Striker Aimbot: <font id="aimBotStateColor" color="red"><label id="aimBotState">OFF</label></font></p>
             <p>Striker One-Shot: <font id="strikerHackStateColor" color="red"><label id="strikerHackState">OFF</label></font></p>
             <p>Remove Mines: <font id="removeMinesStateColor" color="red"><label id="removeMinesState">OFF</label></font></p>
