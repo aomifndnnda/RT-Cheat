@@ -1294,6 +1294,7 @@ let cheatMenuCode = `
             border-radius: 25px;
             outline: 2px solid white;
             opacity: 0.88;
+	    backdrop-filter: "blur (5px)"
         }
 	</style>
 
@@ -1315,7 +1316,7 @@ let cheatMenuCode = `
 
 		<div id="infoWindow">
 			<p>Press Insert To Toggle UI</p>
-            <p><center><font id="nig" color="black">Made By Akz</center></font></p>
+            <a href="https://www.youtube.com/c/Kaijas?sub_confirmation=1" target="_blank"><center><font id="nig" color="#C2A10B">Made By Akz</center></font></p>
 		</div>
 
 	</div>
