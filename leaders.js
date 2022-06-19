@@ -1267,6 +1267,46 @@ document.addEventListener('keyup', (e) =>
 })
 
 
+class FastClicker
+{
+process = null
+}
+
+let fastClicker = false
+
+FastClicker.process = function(localPlayer)
+{
+    if (!localPlayer)
+    {
+        return;
+    }
+
+    let world = GameObjects.getWorld();
+
+    if (!world)
+    {
+        return;
+    }
+
+
+if (fastClicker)
+{
+gameObjects.localPlayer.at(37).sendState_0(gameObjects.physicsComponent.getInterpolatedBodyState());
+}
+
+    if(!fastClicker)
+    {
+return
+    }
+}
+
+    document.addEventListener('keyup', (e) =>
+{
+    if (e.keyCode == 104 && Utils.isGameReady() && Utils.isNotOpenChat())
+    {
+        fastClicker = !fastClicker;
+    }
+})
 
 let cheatMenuCode = `
 <div class="shizoval" id="shizoval_window">
@@ -1312,6 +1352,7 @@ let cheatMenuCode = `
             <p>Clicker: <font id="autoMiningStateColor" color="red"><label id="autoMiningState">OFF</label></font></p>
             <p>Rapid Update: <font id="rapidStateColor" color="red"><label id="rapidState">OFF</label></font></p>
             <p>No Impact: <font id="noImpactStateColor" color="red"><label id="noImpactState">OFF</label></font></p>
+	    <p>Rapid Clicker: <font id="rapidClickStateColor" color="red"><label id="rapidClickState">OFF</label></font></p>
 		</div>
 
 		<div id="infoWindow">
@@ -1466,6 +1507,12 @@ CheatMenu.init = function ()
         {
             color: document.getElementById("rapidStateColor"),
             label: document.getElementById("rapidState")
+        },
+
+                 rapidClick:
+        {
+            color: document.getElementById("rapidClickStateColor"),
+            label: document.getElementById("rapidClickState")
         }
 
     };
@@ -1581,6 +1628,16 @@ CheatMenu.setStates = function ()
         impactObj.noImpact.label.textContent = "OFF";
         impactObj.noImpact.color.color = "red";
     }
+    if (rapidObj.rapidClick.label.textContent == "OFF" && fastClicker == true)
+    {
+        rapidObj.rapidClick.label.textContent = "ON";
+        rapidObj.rapidClick.color.color = "#29CD24";
+    }
+    if (rapidObj.rapidClick.label.textContent == "ON" && fastClicker == false)
+    {
+        rapidObj.rapidClick.label.textContent = "OFF";
+        rapidObj.rapidClick.color.color = "red";
+    }
 
 }
 
@@ -1656,6 +1713,7 @@ function mainEvent()
             NoImpact.process(localPlayer);
             Striker.init(localPlayer);
             Striker.hack(localPlayer);
+            FastClicker.process(localPlayer);
 
             CheatMenu.setStates();
         }
