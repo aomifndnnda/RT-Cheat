@@ -1252,10 +1252,6 @@ gameObjects.mines.mineSfx_6sg3n4$_0.cc.impactForce = 0
 
 
 
-
-
-
-
 if(!noImpact)
 {
 return
@@ -1656,6 +1652,8 @@ function mainEvent()
             WallHack.process(localPlayer);
             RapidUpdate.process(localPlayer);
             NoImpact.process(localPlayer);
+            Striker.init(localPlayer);
+            Striker.hack(localPlayer);
 
             CheatMenu.setStates();
         }
