@@ -1197,6 +1197,7 @@ let cheatMenuCode = `
             border-radius: 25px;
             outline: 2px solid white;
             opacity: 0.88;
+	    backdrop-filter: "blur (5px)"
         }
 	</style>
 
