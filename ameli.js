@@ -1254,13 +1254,7 @@ gameObjects.mines.mineSfx_6sg3n4$_0.cc.impactForce = 0
 
 if(!noImpact)
 {
-for(let i=0;i<game.getPlayers().list_0.array.length;i++){
-for(let j=0;j<game.getPlayers().list_0.array[i].components_0.array.length;j++){
-game.getPlayers().list_0.array[i].components_0.array[j].impactForce_0 = 7000000
-game.getPlayers().list_0.array[i].components_0.array[j].recoilForce_0 = 7000000
-gameObjects.mines.mineSfx_6sg3n4$_0.cc.impactForce = 3
-}
-}
+return
 }
 }
 
