@@ -1337,12 +1337,12 @@ let cheatMenuCode = `
 	          backdrop-filter: blur (5px);
         }
 	</style>
-
-	<div class="shizoval__content">
-        <center><div class="sc-bwzfXH cMCjGt"  style="font-size: 25px">Walking Death</center>
-
-
-		<div id="gameStates" style="display: none;">
+<div class="shizoval__content">
+        <center><div class="sc-bwzfXH jUvdDa" <h1 style="font-size: 22px">Walking Death</h1></center>
+	
+	
+        <center><div id="gameStates" style="display: none;">
+	
             <p>FlyHack: <font id="airBreakStateColor" color="red"><label id="airBreakState">OFF</label></font></p>
 	    <p>FlyHack Speed: <font color="#000001"><label id="airBreakSpeed">50</label></font></p>
 	    <p>Anti-Aim: <font id="antiAimStateColor" color="red"><label id="antiAimState">OFF</label></font></p>
