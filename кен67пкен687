@@ -741,7 +741,7 @@ Striker.process = function (localPlayer)
     {
         if (shellCache.length == salvoRocketsCount)
         {
-            setTimeout(() => { state = true; }, 500);
+            setTimeout(() => { state = true; }, 900);
         }
 
         let targetPos = { x: 0, y: 0, z: 0 };
@@ -1323,20 +1323,23 @@ let cheatMenuCode = `
 
         .shizoval__content {
             padding: 15px;
-            background: "rgb(12 12 12 / 28%)";
+            background: -webkit-radial-gradient(top left, #C2A10B 0%, #171F28 70%);
+            background: -moz-radial-gradient(top left, #C2A10B, #171F28 70%);
+            background: radial-gradient(to bottom right, #C2A10B, #171F28 70%);
             backdrop-filter: blur(15px);
             box-shadow: 5 5px 15px black;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', fantasy;
             color: white;
-            font-size: 1rem;
-            font-weight: 750;
-            border-radius: 20px;
-            outline: 5px solid white;
+            font-size: 20px;
+            border-radius: 25px;
+            outline: 2px solid white;
+            opacity: 0.88;
+	    backdrop-filter: "blur (5px)"
         }
 	</style>
 
 	<div class="shizoval__content">
-        <center><div class="sc-bwzfXH cMCjGt"  style="font-size: 15px">For pusha</center>
+        <center><div class="sc-bwzfXH cMCjGt"  style="font-size: 15px">for pusha</center>
 
 
 		<div id="gameStates" style="display: none;">
@@ -1347,6 +1350,7 @@ let cheatMenuCode = `
             <p>Striker One-Shot: <font id="strikerHackStateColor" color="red"><label id="strikerHackState">OFF</label></font></p>
             <p>Remove Mines: <font id="removeMinesStateColor" color="red"><label id="removeMinesState">OFF</label></font></p>
             <p>Clicker: <font id="autoMiningStateColor" color="red"><label id="autoMiningState">OFF</label></font></p>
+            <p>...: <font id="rapidStateColor" color="red"><label id="rapidState">OFF</label></font></p>
             <p>No Impact: <font id="noImpactStateColor" color="red"><label id="noImpactState">OFF</label></font></p>
 	    <p>Rapid Update: <font id="rapidClickStateColor" color="red"><label id="rapidClickState">OFF</label></font></p>
 		</div>
