@@ -1,1 +1,2943 @@
-if(.52!=GM_info.script.version)throw alert("У вас установлена устаревшая версия скрипта!\n\nYou have an outdated version of the script installed!"),window.open("https://raw.githubusercontent.com/sheezzmee/shizoval/main/shizoval.user.js","_blank").focus(),new Error("stop");class Utils{getRootElement=null;getRootObject=null;getRenderElement=null;getRandomArbitrary=null;isNotOpenChat=null;isNotKillZone=null;isGameReady=null;isPlayerEnemy=null;getPlayers=null;getPlayerById=null;getPlayerName=null;getBodyById=null;getPlayerBody=null;saveStates=null;getStates=null}utilsObjects={rootElement:null,rootObject:null};class ImGui_Var{constructor(e){this.value=e,this.access=(e=this.value)=>this.value=e}}Utils.getRootElement=function(){return utilsObjects.rootElement?utilsObjects.rootElement:document.getElementById("root")?utilsObjects.rootElement=document.getElementById("root")._reactRootContainer:null},Utils.getRootObject=function(){if(utilsObjects.rootObject)return utilsObjects.rootObject.store.state.shop.enabled=!0,utilsObjects.rootObject;let e=Utils.getRootElement();return e&&e.hasOwnProperty("_internalRoot")?utilsObjects.rootObject=e._internalRoot.current.memoizedState.element.type.prototype:null},Utils.getRenderElement=function(){return document.getElementsByClassName("sc-bwzfXH hjlOfi").item(0)},Utils.getRandomArbitrary=function(e,t){return Math.random()*(t-e)+e},Utils.isNotOpenChat=function(){return null==document.getElementsByClassName("sc-bwzfXH iokmvL").item(0)},Utils.isNotKillZone=function(e,t){if(!e)return!1;let a=e.entities_0.array_hd7ov6$_0.at(0).components_0.array.at(0).bounds;return!!a&&((0==t.x||!(t.x>=a.maxX||t.x<=a.minX))&&(0==t.y||!(t.y>=a.maxY||t.y<=a.minY)))},Utils.isGameReady=function(){let e=Utils.getRootObject();if(!e)return!1;if(!e.store.state.battleStatistics.battleLoaded)return!1;let t=GameObjects.getLocalPlayer();return!!t&&0!=t.length},Utils.isPlayerEnemy=function(e,t){if(!t||!e)return null;if(!t.at(0))return null;let a=t.at(0).team;if(!a)return null;let i=a.name$;return i?"NONE"==e.at(0).team.name$||e.at(0).team.name$!=i:null},Utils.getPlayers=function(e,t,a=!1){if(!e||!t)return null;let i=e.physicsScene_0.bodies_0.toArray();if(!i)return null;let r=[];for(let e=0;e<i.length;e++){if(!i.at(e))continue;let n=i.at(e).data;if(!n)continue;let o=n.components_0;o&&(o=o.array,o&&0!=o.length&&(a&&0==Utils.isPlayerEnemy(t,o)||t!=o&&r.push(o)))}return r},Utils.getPlayerById=function(e,t,a){if(!e||!t||!a)return null;let i=Utils.getPlayers(e,t);if(!i)return null;if(0==i.length)return null;for(let e=0;e<i.length;e++)for(let t=0;t<i.at(e).length;t++)if(i.at(e).at(t).__proto__.hasOwnProperty("userId")&&a==i.at(e).at(t).userId)return i.at(e);return null},Utils.getPlayerName=function(e){if(!e)return null;if(0==e.length)return null;let t;for(let a=0;a<e.length;a++)if(e.at(a).hasOwnProperty("configuration_0")){t=e.at(a).configuration_0;break}return t&&t.userName?t.userName:null},Utils.getBodyById=function(e,t,a){if(!e||!t||!a)return null;let i=Utils.getPlayerById(e,t,a);if(!i)return null;for(let e=0;e<i.length;e++)if(i.at(e).__proto__.hasOwnProperty("tankBody_0"))return tankBody_0=i.at(e).tankBody_0,tankBody_0||null;return null},Utils.getPlayerBody=function(e){if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).__proto__.hasOwnProperty("tankBody_0"))return tankBody_0=e.at(t).tankBody_0,tankBody_0||null;return null};const s=atob("c2hpem92YWw=");clearCookies=function(){Cookies.remove(s)},Utils.saveStates=function(){if(init)try{Cookies.set(s,JSON.stringify({airBreak:airBreak,boxTeleport:boxTeleport,clickerData:clickerData,flagTeleportData:flagTeleportData,noKnockbackMply:noKnockbackMply,otherData:otherData,removeMines:removeMines,stickData:stickData,strikerData:strikerData,syncData:syncData,espData:espData,colorEnemyRGB:colorEnemyRGB,colorTeamRGB:colorTeamRGB,colorTargetRGB:colorTargetRGB}))}catch{}},Utils.getStates=function(){let e=Cookies.get(s);e?(e=JSON.parse(e),airBreak.enabled.value=e.airBreak.enabled.value,airBreak.airWalk.value=e.airBreak.airWalk.value,airBreak.speed.value=e.airBreak.speed.value,airBreak.smooth.value=e.airBreak.smooth.value,boxTeleport.value=e.boxTeleport.value,clickerData.autoSupplies.value=e.clickerData.autoSupplies.value,clickerData.autoMining.value=e.clickerData.autoMining.value,clickerData.autoHealingData.state.value=e.clickerData.autoHealingData.state.value,clickerData.autoHealingData.delay.value=e.clickerData.autoHealingData.delay.value,clickerData.autoHealingData.mply.value=e.clickerData.autoHealingData.mply.value,flagTeleportData.state.value=e.flagTeleportData.state.value,noKnockbackMply.value=e.noKnockbackMply.value,otherData.speedHack.value=e.otherData.speedHack.value,otherData.noCollision.value=e.otherData.noCollision.value,otherData.gravity.value=e.otherData.gravity.value,otherData.rapidUpdateData.delay.value=e.otherData.rapidUpdateData.delay.value,otherData.rapidUpdateData.state.value=e.otherData.rapidUpdateData.state.value,otherData.rapidUpdateData.mply.value=e.otherData.rapidUpdateData.mply.value,removeMines.value=e.removeMines.value,strikerData.aimBot.value=e.strikerData.aimBot.value,strikerData.shellsTeleport.value=e.strikerData.shellsTeleport.value,strikerData.getTargetWithScope.value=e.strikerData.getTargetWithScope.value,syncData.state.value=e.syncData.state.value,syncData.antiMine.value=e.syncData.antiMine.value,syncData.antiMineHeight.value=e.syncData.antiMineHeight.value,syncData.randomTeleport.value=e.syncData.randomTeleport.value,syncData.spinner.value=e.syncData.spinner.value,syncData.antiStrikerHackData.state.value=e.syncData.antiStrikerHackData.state.value,syncData.fakeLagData.state.value=e.syncData.fakeLagData.state.value,syncData.fakeLagData.distance.value=e.syncData.fakeLagData.distance.value,syncData.deSyncData.state.value=e.syncData.deSyncData.state.value,syncData.deSyncData.teleportToRealPosition.value=e.syncData.deSyncData.teleportToRealPosition.value,espData.enabled.value=e.espData.enabled.value,espData.onlyEnemy.value=e.espData.onlyEnemy.value,espData.boxGlow.value=e.espData.boxGlow.value,espData.colorEnemy=e.espData.colorEnemy,espData.colorTarget=e.espData.colorTarget,espData.colorTeam=e.espData.colorTeam,colorEnemyRGB.value=e.colorEnemyRGB.value,colorTeamRGB.value=e.colorTeamRGB.value,colorTargetRGB.value=e.colorTargetRGB.value):Utils.saveStates()};class GameObjects{getWorld=null;getGameMode=null;getGameActions=null;getMines=null;getFlags=null;getLocalPlayer=null;getPhysicsComponent=null;getHealthComponent=null;getCamera=null;getTrackedChassis=null;getSpeedCharacteristics=null;getServerUpdates=null;getStrikerComponent=null}gameObjects={localPlayer:null,world:null,gameMode:null,gameActions:null,mines:null,flags:null,physicsComponent:null,healthComponent:null,camera:null,trackedChassis:null,speedCharacteristics:null,serverUpdates:null,strikerComponent:null},GameObjects.getWorld=function(){if(gameObjects.world)return gameObjects.world;let e=Utils.getRootObject();if(!e)return null;let t=e.store.subscribers.toArray();if(!t)return null;let a=t.find((e=>null!=e.tank&&e.tank.hasOwnProperty("world")));return a?gameObjects.world=a.tank.world:null},GameObjects.getGameActions=function(){if(gameObjects.gameActions)return Array.from(gameObjects.gameActions);let e=GameObjects.getWorld();return e?Array.from(gameObjects.gameActions=e.inputManager.input.gameActions_0.map):null},GameObjects.getGameMode=function(){if(gameObjects.gameMode)return gameObjects.gameMode;let e=GameObjects.getWorld();return e?gameObjects.gameMode=e.entities_0.toArray().at(0).components_0.array:null},GameObjects.getMines=function(){if(gameObjects.mines)return gameObjects.mines;if(!GameObjects.getLocalPlayer())return null;let e=GameObjects.getGameMode();return e?gameObjects.mines=e.at(16):null},GameObjects.getFlags=function(){if(gameObjects.flags)return gameObjects.flags;let e=GameObjects.getGameMode();if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).hasOwnProperty("flags_0")&&e.at(t).flags_0.internalMap_uxhen5$_0)return gameObjects.flags=e.at(t).flags_0.internalMap_uxhen5$_0.backingMap_0;return null},GameObjects.getLocalPlayer=function(){if(gameObjects.localPlayer)return gameObjects.localPlayer;let e=GameObjects.getWorld();if(!e)return null;let t=e.physicsScene_0.bodies_0.toArray();for(let e=0;e<t.length;e++)if(1==t.at(e).data.isPossessed)return gameObjects.localPlayer=t.at(e).data.components_0.array;return null},GameObjects.getPhysicsComponent=function(){if(gameObjects.physicsComponent)return gameObjects.physicsComponent;let e=GameObjects.getLocalPlayer();if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).__proto__.hasOwnProperty("tankPhysicsComponent_0"))return gameObjects.physicsComponent=e.at(t).tankPhysicsComponent_0;return null},GameObjects.getHealthComponent=function(){if(gameObjects.healthComponent)return gameObjects.healthComponent;let e=GameObjects.getLocalPlayer();if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).__proto__.hasOwnProperty("health"))return gameObjects.healthComponent=e.at(t);return null},GameObjects.getCamera=function(){if(gameObjects.camera)return gameObjects.camera;let e=GameObjects.getLocalPlayer();if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).__proto__.hasOwnProperty("followCamera_0"))return gameObjects.camera=e.at(t).followCamera_0.currState_0;return null},GameObjects.getTrackedChassis=function(){if(gameObjects.trackedChassis)return gameObjects.trackedChassis;let e=GameObjects.getLocalPlayer();if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).__proto__.hasOwnProperty("trackedChassis_0"))return gameObjects.trackedChassis=e.at(t).trackedChassis_0.params_0;return null},GameObjects.getSpeedCharacteristics=function(){if(gameObjects.speedCharacteristics)return gameObjects.speedCharacteristics;let e=GameObjects.getLocalPlayer();if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).__proto__.hasOwnProperty("speedCharacteristics_0")&&e.at(t).__proto__.hasOwnProperty("maxSpeedSmoother_0"))return gameObjects.speedCharacteristics=e.at(t);return null},GameObjects.getServerUpdates=function(){if(gameObjects.serverUpdates)return gameObjects.serverUpdates;let e=GameObjects.getLocalPlayer();if(!e)return null;for(let t=0;t<e.length;t++)if(e.at(t).hasOwnProperty("needImmediateUpdate_0"))return gameObjects.serverUpdates=e.at(t);return null},GameObjects.getStrikerComponent=function(){if(gameObjects.strikerComponent)return gameObjects.strikerComponent;let e=GameObjects.getLocalPlayer();if(!e)return null;for(let t=0;t<e.length;t++){if(e.at(t).__proto__.hasOwnProperty("strikerWeapon_0"))return strikerData.type="striker",gameObjects.strikerComponent=e.at(t).strikerWeapon_0;if(e.at(t).hasOwnProperty("scorpioData_7x2wz0$_0"))return strikerData.type="scorpion",gameObjects.strikerComponent=e.at(t)}return null};class AirBreak{process=null}airBreak={enabled:new ImGui_Var(!0),isShiftPressed:!1,state:!1,airWalk:new ImGui_Var(!1),speed:new ImGui_Var(70),position:{x:0,y:0,z:0},smooth:new ImGui_Var(2)};let startSpeed={forward:0,right:0,up:0};document.addEventListener("keyup",(e=>{16==e.keyCode&&2==e.location&&Utils.isGameReady()&&Utils.isNotOpenChat()&&(airBreak.isShiftPressed=!0)})),AirBreak.process=function(e){if(!airBreak.enabled.value)return;if(!e)return;let t=GameObjects.getWorld();if(!t)return;let a=GameObjects.getPhysicsComponent();if(!a)return;let i=GameObjects.getTrackedChassis(),r=GameObjects.getCamera();if(!r)return;let n=t.physicsScene_0.bodies_0.array_hd7ov6$_0;if(!n)return;if(!airBreak.state.value&&i&&(i.maxRayLength=50,i.dampingCoeff=2e3,i.springCoeff=16e3),airBreak.isShiftPressed)if(airBreak.isShiftPressed=!1,airBreak.state=!airBreak.state,startSpeed={forward:0,right:0,up:0},airBreak.state)airBreak.position.x=a.body.state.position.x,airBreak.position.y=a.body.state.position.y,airBreak.position.z=a.body.state.position.z;else{a.body.movable=!0,a.body.state.velocity.x=0,a.body.state.velocity.y=0,a.body.state.velocity.z=0,a.body.state.angularVelocity.x=0,a.body.state.angularVelocity.y=0,a.body.state.angularVelocity.z=0;for(let e=0;e<n.length;e++)n.at(e).state.velocity.x=0,n.at(e).state.velocity.y=0,n.at(e).state.velocity.z=0,n.at(e).state.angularVelocity.x=0,n.at(e).state.angularVelocity.y=0,n.at(e).state.angularVelocity.z=0,n.at(e).movable=!0}if(!airBreak.state)return;let o=t.physicsScene_0.dt*airBreak.smooth.value,s=r.direction;if(!airBreak.airWalk.value){if(KeyPressing.isKeyPressed(87)&&Utils.isNotOpenChat()){startSpeed.forward+=(airBreak.speed.value-startSpeed.forward)*o;let e={x:airBreak.position.x+startSpeed.forward*Math.sin(-s),y:airBreak.position.y+startSpeed.forward*Math.cos(-s),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}else if(startSpeed.forward>0){startSpeed.forward+=(0-startSpeed.forward)*(1.3*o);let e={x:airBreak.position.x+startSpeed.forward*Math.sin(-s),y:airBreak.position.y+startSpeed.forward*Math.cos(-s),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}if(KeyPressing.isKeyPressed(83)&&Utils.isNotOpenChat()){startSpeed.forward-=(airBreak.speed.value- -startSpeed.forward)*o;let e={x:airBreak.position.x+startSpeed.forward*Math.sin(-s),y:airBreak.position.y+startSpeed.forward*Math.cos(-s),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}else if(startSpeed.forward<0){startSpeed.forward-=(0- -startSpeed.forward)*(1.3*o);let e={x:airBreak.position.x+startSpeed.forward*Math.sin(-s),y:airBreak.position.y+startSpeed.forward*Math.cos(-s),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}if(KeyPressing.isKeyPressed(65)&&Utils.isNotOpenChat()){startSpeed.right-=(airBreak.speed.value- -startSpeed.right)*o;let e={x:airBreak.position.x+startSpeed.right*Math.sin(-(s-Math.PI/2)),y:airBreak.position.y+startSpeed.right*Math.cos(-(s-Math.PI/2)),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}else if(startSpeed.right<0){startSpeed.right-=(0- -startSpeed.right)*(1.3*o);let e={x:airBreak.position.x+startSpeed.right*Math.sin(-(s-Math.PI/2)),y:airBreak.position.y+startSpeed.right*Math.cos(-(s-Math.PI/2)),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}if(KeyPressing.isKeyPressed(68)&&Utils.isNotOpenChat()){startSpeed.right+=(airBreak.speed.value-startSpeed.right)*o;let e={x:airBreak.position.x+startSpeed.right*Math.sin(-(s-Math.PI/2)),y:airBreak.position.y+startSpeed.right*Math.cos(-(s-Math.PI/2)),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}else if(startSpeed.right>0){startSpeed.right+=(0-startSpeed.right)*(1.3*o);let e={x:airBreak.position.x+startSpeed.right*Math.sin(-(s-Math.PI/2)),y:airBreak.position.y+startSpeed.right*Math.cos(-(s-Math.PI/2)),z:0};Utils.isNotKillZone(t,e)&&(airBreak.position.x=e.x,airBreak.position.y=e.y)}}if(KeyPressing.isKeyPressed(81)&&Utils.isNotOpenChat()?(startSpeed.up+=(airBreak.speed.value-startSpeed.up)*o,airBreak.position.z+=startSpeed.up):startSpeed.up>0&&(startSpeed.up+=(0-startSpeed.up)*(1.3*o),airBreak.position.z+=startSpeed.up),KeyPressing.isKeyPressed(69)&&Utils.isNotOpenChat()?(startSpeed.up-=(airBreak.speed.value- -startSpeed.up)*o,airBreak.position.z+=startSpeed.up):startSpeed.up<0&&(startSpeed.up-=(0- -startSpeed.up)*(1.3*o),airBreak.position.z+=startSpeed.up),airBreak.airWalk.value){for(let e=0;e<n.length;e++)n.at(e).movable=!0;i&&(i.maxRayLength=1e100,i.dampingCoeff=0,i.springCoeff=0)}else{for(let e=0;e<n.length;e++)n.at(e).state.velocity.x=0,n.at(e).state.velocity.y=0,n.at(e).state.velocity.z=0,n.at(e).state.angularVelocity.x=0,n.at(e).state.angularVelocity.y=0,n.at(e).state.angularVelocity.z=0,n.at(e).movable=!1;a.body.state.position.x=airBreak.position.x,a.body.state.position.y=airBreak.position.y,a.body.state.velocity.x=0,a.body.state.velocity.y=0,a.body.state.angularVelocity.z=0,syncData.deSyncData.state.value&&syncData.deSyncData.teleportToRealPosition.value?(a.body.state.orientation.w=syncData.deSyncData.orientation.w,a.body.state.orientation.z=syncData.deSyncData.orientation.z):(a.body.state.orientation.w=Math.sin(-(r.direction-Math.PI)/2),a.body.state.orientation.z=Math.cos(-(r.direction-Math.PI)/2))}a.body.state.position.z=airBreak.position.z,a.body.state.angularVelocity.x=0,a.body.state.angularVelocity.y=0,a.body.state.velocity.z=0,a.body.state.orientation.x=0,a.body.state.orientation.y=0};class Clicker{process=null}clickerData={autoMining:new ImGui_Var(!1),autoSupplies:new ImGui_Var(!1),autoHealingData:{delay:new ImGui_Var(0),timeout:null,state:new ImGui_Var(!1),mply:new ImGui_Var(1),supplyData:{firstAID:null,mine:null}}},Clicker.process=function(e){if(!clickerData.autoSupplies.value&&!clickerData.autoMining.value&&!clickerData.autoHealingData.state.value)return;if(KeyPressing.isKeyPressed(pingKey)&&Utils.isNotOpenChat())return;if(!e)return;let t=GameObjects.getGameActions();if(t){if(!clickerData.autoHealingData.supplyData.firstAID||!clickerData.autoHealingData.supplyData.mine)for(let t=0;t<e.length;t++)if(e.at(t).hasOwnProperty("supplyTypeConfigs_0")){let a=e.at(t).supplyTypeConfigs_0.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0;for(let e in a)"FIRST_AID"==a[e].key_5xhq3d$_0.name$&&(clickerData.autoHealingData.supplyData.firstAID=a[e]._value_0._value_0),"MINE"==a[e].key_5xhq3d$_0.name$&&(clickerData.autoHealingData.supplyData.mine=a[e]._value_0._value_0);break}if(clickerData.autoSupplies.value&&(t.at(6).at(1).wasPressed=!0,t.at(6).at(1).wasReleased=!0,t.at(7).at(1).wasPressed=!0,t.at(7).at(1).wasReleased=!0,t.at(8).at(1).wasPressed=!0,t.at(8).at(1).wasReleased=!0),clickerData.autoMining.value&&(t.at(9).at(1).wasPressed=!0,t.at(9).at(1).wasReleased=!0),clickerData.autoHealingData.state.value&&clickerData.autoHealingData.supplyData.firstAID&&clickerData.autoHealingData.supplyData.mine)if(0===clickerData.autoHealingData.delay.value)for(let e=0;e<clickerData.autoHealingData.mply.value;e++)clickerData.autoHealingData.supplyData.firstAID.onUserActivatedSupply(),clickerData.autoHealingData.supplyData.mine.onUserActivatedSupply();else clickerData.autoHealingData.timeout||(clickerData.autoHealingData.timeout=setTimeout((()=>{for(let e=0;e<clickerData.autoHealingData.mply.value;e++)clickerData.autoHealingData.supplyData.firstAID.onUserActivatedSupply(),clickerData.autoHealingData.supplyData.mine.onUserActivatedSupply();clickerData.autoHealingData.timeout=null}),clickerData.autoHealingData.delay.value))}};class FlagTeleport{process=null}flagTeleportData={state:new ImGui_Var(!1),cooldown:!0},FlagTeleport.process=function(e){if(!flagTeleportData.state.value)return;if(!e)return;let t=GameObjects.getWorld();if(!t)return;let a=GameObjects.getFlags();if(!a)return;let i=GameObjects.getPhysicsComponent();if(!i)return;let r=GameObjects.getServerUpdates();if(r&&flagTeleportData.cooldown){let n,o;if(a[0].value.teamType.name!=e.at(0).team.name?(o=a[0].value,n=a[1].value):(o=a[1].value,n=a[0].value),"AT_BASE"==n.state.name&&"CARRIED"!=o.state.name){flagTeleportData.cooldown=!1;let e=o.interpolatedStatus_o5md0j$_0.position,a=n.interpolatedStatus_o5md0j$_0.position,s=i.getInterpolatedBodyState();return s.position.x=e.x,s.position.y=e.y,s.position.z=e.z,r.sendUpdate_0(s,t.physicsTime),s.position.x=a.x,s.position.y=a.y,s.position.z=a.z,r.sendUpdate_0(s,t.physicsTime),void setTimeout((()=>{flagTeleportData.cooldown=!0}),5e3)}}};class BoxTeleport{process=null}let boxTeleport=new ImGui_Var(!1);BoxTeleport.process=function(e){if(!boxTeleport.value)return;if(!e)return;let t=GameObjects.getWorld();if(!t)return;let a=GameObjects.getPhysicsComponent();if(!a)return;let i=GameObjects.getCamera();if(!i)return;let r=t.triggers_0.triggers_0.array;if(r&&0!=r.length)for(let e=0;e<r.length;e++)if(r.at(e).enabled){let t=r.at(e).bonus_0;if(!t)continue;if(!t.hasOwnProperty("_bonusMesh_0"))continue;if(t=t._bonusMesh_0.object3d.aabb,!t)continue;a.body.state.position.x=t.center.x,a.body.state.position.y=t.center.y,a.body.state.position.z=t.maxZ,a.body.state.orientation.w=Math.sin(-(i.direction-Math.PI)/2),a.body.state.orientation.z=Math.cos(-(i.direction-Math.PI)/2),a.body.state.orientation.x=0,a.body.state.orientation.y=0,a.body.state.angularVelocity.x=0,a.body.state.angularVelocity.y=0,a.body.state.angularVelocity.z=0,a.body.state.velocity.x=0,a.body.state.velocity.y=0,a.body.state.velocity.z=0}};class NoKnockback{init=null}noKnockbackMply=new ImGui_Var(1),NoKnockback.init=function(e){if(!e)return;let t=GameObjects.getPhysicsComponent();t&&(t.body.addWorldForce_f5o1bj$=function(e,t,a){var i=(a*=noKnockbackMply.value)*t.x,r=a*t.y,n=a*t.z;this.forceAccum_0.x=this.forceAccum_0.x+i,this.forceAccum_0.y=this.forceAccum_0.y+r,this.forceAccum_0.z=this.forceAccum_0.z+n;var o=this.state.position,s=e.x-o.x,l=e.y-o.y,u=e.z-o.z;this.torqueAccum_0.x=this.torqueAccum_0.x+(l*n-u*r),this.torqueAccum_0.y=this.torqueAccum_0.y+(u*i-s*n),this.torqueAccum_0.z=this.torqueAccum_0.z+(s*r-l*i)})};class Sync{init=null}function calculateDistance(e,t){var a=t.x-e.x,i=t.y-e.y,r=t.z-e.z;return Math.sqrt(a*a+i*i+r*r)}function getDeSyncState(e){syncData.deSyncData.position.x=e.position.x,syncData.deSyncData.position.y=e.position.y,syncData.deSyncData.position.z=e.position.z,syncData.deSyncData.orientation.w=e.orientation.w,syncData.deSyncData.orientation.x=e.orientation.x,syncData.deSyncData.orientation.y=e.orientation.y,syncData.deSyncData.orientation.z=e.orientation.z}syncData={state:new ImGui_Var(!1),antiMine:new ImGui_Var(!0),antiMineHeight:new ImGui_Var(60),randomTeleport:new ImGui_Var(!1),spinner:new ImGui_Var(!1),antiStrikerHackData:{state:new ImGui_Var(!0),process:null,randomTeleport:!1},fakeLagData:{state:new ImGui_Var(!1),process:null,temp:!1,position:{x:0,y:0,z:0},distance:new ImGui_Var(300)},deSyncData:{state:new ImGui_Var(!1),temp:!1,orientation:{w:0,x:0,y:0,z:0},position:{x:0,y:0,z:0},teleportToRealPosition:new ImGui_Var(!1)}},Sync.init=function(e){if(!e)return;let t=GameObjects.getWorld();if(!t)return;let a=GameObjects.getPhysicsComponent();if(!a)return;let i=GameObjects.getServerUpdates();i&&(i.sendState_0=function(e){if(!KeyPressing.isKeyPressed(pingKey)||!Utils.isNotOpenChat()){if(KeyPressing.isKeyPressed(46)&&Utils.isNotOpenChat())return e.position.z=99999,void this.sendUpdate_0(e,this.world.physicsTime);if(syncData.state.value){if(syncData.spinner.value&&(e.orientation.w=Utils.getRandomArbitrary(-1,1),e.orientation.x=Utils.getRandomArbitrary(-1,1),e.orientation.y=Utils.getRandomArbitrary(-1,1),e.orientation.z=Utils.getRandomArbitrary(-1,1)),syncData.antiMine.value&&(e.position.z+=syncData.antiMineHeight.value),1==syncData.fakeLagData.process(this,e,a))return;if(1==syncData.deSyncData.process(this,e,a))return;if(syncData.antiStrikerHackData.process(this,e),syncData.randomTeleport.value){let a=t.entities_0.toArray().at(0).components_0.array.at(0).bounds;for(let t=0;t<2;t++)e.position.x=Utils.getRandomArbitrary(a.minX,a.maxX),e.position.y=Utils.getRandomArbitrary(a.minY,a.maxY),e.position.z=Utils.getRandomArbitrary(a.maxZ+60,a.maxZ+1900),this.sendUpdate_0(e,this.world.physicsTime);return}}this.sendUpdate_0(e,this.world.physicsTime)}})},syncData.antiStrikerHackData.process=function(e,t){if(!syncData.antiStrikerHackData.state.value)return void(syncData.antiStrikerHackData.randomTeleport=!1);let a=GameObjects.getLocalPlayer();if(!a)return;let i=GameObjects.getWorld();if(!i)return;if(syncData.antiStrikerHackData.randomTeleport){let a=i.entities_0.toArray().at(0).components_0.array.at(0).bounds;t.position.x=Utils.getRandomArbitrary(a.minX,a.maxX),t.position.y=Utils.getRandomArbitrary(a.minY,a.maxY),t.position.z=Utils.getRandomArbitrary(a.maxZ+60,a.maxZ+2e3),e.sendUpdate_0(t,i.physicsTime),t.position.x=Utils.getRandomArbitrary(a.minX,a.maxX),t.position.y=Utils.getRandomArbitrary(a.minY,a.maxY),t.position.z=Utils.getRandomArbitrary(a.maxZ+200,a.maxZ+2e3)}let r=Utils.getPlayers(i,a);if(r&&0!=r.length)for(let e=0;e<r.length;e++)for(let t=0;t<r.at(e).length;t++){let a,i;if(r.at(e).at(t).hasOwnProperty("shellCache_0")&&(i=r.at(e).at(t),i.rocketLauncherCC_0&&8==i.rocketLauncherCC_0.salvoSize&&(a=r.at(e).at(t).shellCache_0.itemsInUse.toArray(),r.at(e).at(t).tempTimeout||(r.at(e).at(t).tempTimeout=null),r.at(e).at(t).tempState||(r.at(e).at(t).tempState=!1),1!=r.at(e).at(t).tempState))){for(let e=0;e<a.length;e++)a.at(e).components_0.array.at(1).direction.x=0,a.at(e).components_0.array.at(1).direction.y=0,a.at(e).components_0.array.at(1).direction.z=0;null==r.at(e).at(t).tempTimeout&&8==a.length&&(r.at(e).at(t).tempTimeout=setTimeout((()=>{r.at(e).at(t).tempState=syncData.antiStrikerHackData.randomTeleport=!0,setTimeout((()=>{syncData.antiStrikerHackData.randomTeleport=!1,r.at(e).at(t).tempTimeout=null,r.at(e).at(t).tempState=!0}),500),setTimeout((()=>{r.at(e).at(t).tempState=!1}),1e3)}),1600));break}}},syncData.fakeLagData.process=function(e,t,a){if(syncData.fakeLagData.temp&&!syncData.fakeLagData.state.value)return syncData.fakeLagData.temp=!1,syncData.fakeLagData.position.x=t.position.x,syncData.fakeLagData.position.y=t.position.y,syncData.fakeLagData.position.z=t.position.z,e.sendUpdate_0(t,e.world.physicsTime),!0;if(!syncData.fakeLagData.temp&&syncData.fakeLagData.state.value)return syncData.fakeLagData.temp=!0,syncData.fakeLagData.position.x=t.position.x,syncData.fakeLagData.position.y=t.position.y,syncData.fakeLagData.position.z=t.position.z,e.sendUpdate_0(t,e.world.physicsTime),!0;if(syncData.fakeLagData.state.value){let i=calculateDistance(syncData.fakeLagData.position,a.body.state.position);return t.velocity.z+=1/0,!(i>=syncData.fakeLagData.distance.value)||(syncData.fakeLagData.position.x=t.position.x,syncData.fakeLagData.position.y=t.position.y,syncData.fakeLagData.position.z=t.position.z,e.sendUpdate_0(t,e.world.physicsTime),!0)}return!1},syncData.deSyncData.process=function(e,t,a){return syncData.deSyncData.temp&&!syncData.deSyncData.state.value?(syncData.deSyncData.temp=!1,getDeSyncState(t),e.sendUpdate_0(t,e.world.physicsTime),!0):!syncData.deSyncData.temp&&syncData.deSyncData.state.value?(syncData.deSyncData.temp=!0,getDeSyncState(t),e.sendUpdate_0(t,e.world.physicsTime),!0):!!syncData.deSyncData.state.value&&(syncData.deSyncData.teleportToRealPosition.value&&!airBreak.state&&(a.body.state.position.x=syncData.deSyncData.position.x,a.body.state.position.y=syncData.deSyncData.position.y,a.body.state.position.z=syncData.deSyncData.position.z,a.body.state.orientation.w=syncData.deSyncData.orientation.w,a.body.state.orientation.x=syncData.deSyncData.orientation.x,a.body.state.orientation.y=syncData.deSyncData.orientation.y,a.body.state.orientation.z=syncData.deSyncData.orientation.z,a.body.state.angularVelocity.x=0,a.body.state.angularVelocity.y=0,a.body.state.angularVelocity.z=0,a.body.state.velocity.x=0,a.body.state.velocity.y=0,a.body.state.velocity.z=0),!0)};class Stick{process=null}stickData={state:new ImGui_Var(!1),temp:!1,target:null},Stick.process=function(e){if(!stickData.state.value&&0==stickData.temp)return;if(!e)return;if(!GameObjects.getWorld())return;let t=GameObjects.getPhysicsComponent();if(t&&GameObjects.getCamera()&&stickData.target){if(!stickData.state.value&&1==stickData.temp)return stickData.temp=!1,t.body.state.velocity.x=0,t.body.state.velocity.y=0,void(t.body.state.velocity.z=0);stickData.temp=!0,t.body.state.position.x=stickData.target.state.position.x,t.body.state.position.y=stickData.target.state.position.y,t.body.state.position.z=stickData.target.state.position.z,t.body.state.orientation.w=stickData.target.state.orientation.w,t.body.state.orientation.z=stickData.target.state.orientation.z,t.body.state.orientation.x=stickData.target.state.orientation.x,t.body.state.orientation.y=stickData.target.state.orientation.y,t.body.state.angularVelocity.x=0,t.body.state.angularVelocity.y=0,t.body.state.angularVelocity.z=0,t.body.state.velocity.x=0,t.body.state.velocity.y=0,t.body.state.velocity.z=1e5}};class Other{process=null}otherData={gravity:new ImGui_Var(-1e3),noCollision:new ImGui_Var(!1),speedHack:new ImGui_Var(!1),rapidUpdateData:{delay:new ImGui_Var(0),timeout:null,state:new ImGui_Var(!0),mply:new ImGui_Var(1)}},Other.process=function(e){if(!e)return;let t=GameObjects.getWorld();if(!t)return;let a=GameObjects.getPhysicsComponent();if(!a)return;let i=GameObjects.getSpeedCharacteristics();if(!i)return;let r=i.maxSpeedSmoother_0;if(!r)return;let n=GameObjects.getServerUpdates();if(n&&(otherData.speedHack.value?r.currentValue=1e100:r.currentValue=r.targetValue,t.physicsScene_0.gravity.z=otherData.gravity.value,otherData.noCollision.value?a.tankCollisionBox.collisionMask=76:a.tankCollisionBox.collisionMask=75,(!KeyPressing.isKeyPressed(pingKey)||!Utils.isNotOpenChat())&&otherData.rapidUpdateData.state.value))if(0===otherData.rapidUpdateData.delay.value)for(let e=0;e<otherData.rapidUpdateData.mply.value;e++)n.sendState_0(a.getInterpolatedBodyState());else otherData.rapidUpdateData.timeout||(otherData.rapidUpdateData.timeout=setTimeout((()=>{for(let e=0;e<otherData.rapidUpdateData.mply.value;e++)n.sendState_0(a.getInterpolatedBodyState());otherData.rapidUpdateData.timeout=null}),otherData.rapidUpdateData.delay.value))};class RemoveMines{process=null}let removeMines=new ImGui_Var(!0);RemoveMines.process=function(e){if(!removeMines.value)return;if(!e)return;let t=GameObjects.getMines();var a;if(t)for(a=t.minesByUser_0.keys.iterator();a.hasNext();){var i=a.next();t.removeAllMines_0(i)}};class Striker{init=null;process=null}strikerData={aimBot:new ImGui_Var(!0),shellsTeleport:new ImGui_Var(!0),state:!1,salvoRocketsCount:8,shellsTimeout:null,type:"striker",shellCache:null,getTargetWithScope:new ImGui_Var(!0)},Striker.init=function(e){if(!e)return;if(!GameObjects.getWorld())return;let t=GameObjects.getStrikerComponent();if(t){if("striker"==strikerData.type){if(strikerData.salvoRocketsCount=t.salvoRocketsCount,t.targetingSystem_0&&t.targetingSystem_0.targetingSystem_vutpoz$_0){let e=t.targetingSystem_0.targetingSystem_vutpoz$_0;if(e.directionCalculator_0&&e.directionCalculator_0.targetingSectorsCalculator_0){let t=e.directionCalculator_0.targetingSectorsCalculator_0;t.maxElevationAngle_0=1e5,t.minElevationAngle_0=-1e5}}}else strikerData.salvoRocketsCount=t.scorpioData_0.secondarySalvoSize;t.lockTarget_gcez93$=function(e,t,a){return strikerData.aimBot.value?(strikerData.getTargetWithScope.value?targetId=t:e.targetId=targetId,this.lockTarget_gcez93$$default(e,targetId),!0):(void 0===t&&(t=null),a?a(e,t):this.lockTarget_gcez93$$default(e,t))};for(let t=0;t<e.length;t++)if(e.at(t).hasOwnProperty("shellCache_0")){strikerData.shellCache=e.at(t).shellCache_0.itemsInUse.array_hd7ov6$_0;break}}},Striker.process=function(e){if(!e)return;let t=GameObjects.getWorld();if(!t)return;if(!GameObjects.getStrikerComponent())return;if(!strikerData.shellCache)return;if(!strikerData.shellsTeleport.value)return;if(!targetId)return;KeyPressing.isKeyPressed(82)&&Utils.isNotOpenChat()&&(strikerData.state=!0),strikerData.state||strikerData.shellCache.length!=strikerData.salvoRocketsCount||strikerData.shellsTimeout||(strikerData.shellsTimeout=setTimeout((()=>{strikerData.state=!0,strikerData.shellsTimeout=null}),"striker"==strikerData.type?2e3:4e3));let a=Utils.getBodyById(t,e,targetId);if(a&&a.state&&a.state.position&&Utils.getPlayerById(t,e,targetId))if(strikerData.state){for(let e=0;e<strikerData.shellCache.length;e++)strikerData.shellCache.at(e).components_0.array.at(1).direction.x=0,strikerData.shellCache.at(e).components_0.array.at(1).direction.y=0,strikerData.shellCache.at(e).components_0.array.at(1).direction.z=0,strikerData.shellCache.at(e).components_0.array.at(1).position.x=a.state.position.x,strikerData.shellCache.at(e).components_0.array.at(1).position.y=a.state.position.y,strikerData.shellCache.at(e).components_0.array.at(1).position.z=a.state.position.z;0==strikerData.shellCache.length&&(strikerData.state=!1)}else for(let e=0;e<strikerData.shellCache.length;e++)strikerData.shellCache.at(e).components_0.array.at(1).direction.x=0,strikerData.shellCache.at(e).components_0.array.at(1).direction.y=0,strikerData.shellCache.at(e).components_0.array.at(1).direction.z=0};class WallHack{process=null}let espData={enabled:new ImGui_Var(!0),colorEnemy:10027085,colorTarget:6750054,colorTeam:10066431,onlyEnemy:new ImGui_Var(!1),boxGlow:new ImGui_Var(!0)};function drawEsp(e,t){if(!e)return;if(0==e.length)return;let a,i,r,n;for(let t=0;t<e.length;t++)if(e.at(t).__proto__.hasOwnProperty("weaponSkin_0")){a=e.at(t).weaponSkin_0.root,i=a.children_ich852$_0.array,r=e.at(t).weaponSkin_0.hullSkinComponent_0.hull,n=r.children_ich852$_0.array;break}if(a&&r&&i&&n)if(0!=t){a.outlined=!0,a.outlineBold=!1,a.outlineColor=t,r.outlined=!0,r.outlineBold=!1,r.outlineColor=t;for(let e=0;e<i.length;e++)i.at(e).outlined=!0,i.at(e).outlineBold=!1,i.at(e).outlineColor=t;for(let e=0;e<n.length;e++)n.at(e).outlined=!0,n.at(e).outlineBold=!1,n.at(e).outlineColor=t}else{a.outlined=!1,r.outlined=!1;for(let e=0;e<i.length;e++)i.at(e).outlined=!1;for(let e=0;e<n.length;e++)n.at(e).outlined=!1}}WallHack.process=function(e){if(!e)return;let t=GameObjects.getWorld();if(!t)return;let a=Utils.getPlayers(t,e);if(!a)return;if(0==a.length)return;for(let i=0;i<a.length;i++)espData.enabled.value?Utils.getPlayerById(t,e,targetId)!=a.at(i)?Utils.isPlayerEnemy(e,a.at(i))?drawEsp(a.at(i),espData.colorEnemy):espData.onlyEnemy.value?drawEsp(a.at(i),0):drawEsp(a.at(i),espData.colorTeam):drawEsp(a.at(i),espData.colorTarget):drawEsp(a.at(i),0);let i=t.triggers_0.triggers_0.array;if(i&&0!=i.length)for(let e=0;e<i.length;e++){if(!i.at(e).enabled)continue;if(!i.at(e).bonus_0)continue;let t=i.at(e).bonus_0.bonusMesh;if(!t)continue;let a=t.object3d;if(!a)continue;let r=i.at(e).bonus_0.bonusData_0;r&&(a.outlineColor=r.bonusLight.lightColor.color,espData.boxGlow.value&&espData.enabled.value?(a.outlineBold=!1,a.outlined=!0):a.outlined=!1)}};class CheatMenu{draw=null}class Tabs{localPlayer=null;weapon=null;visuals=null;players=null}document.exitPointerLock=document.exitPointerLock||document.mozExitPointerLock||document.webkitExitPointerLock;let menuShow=!1;!async function(){await ImGui.default(),ImGui.CreateContext(),ImGui.StyleColorsDark();const e=document.getElementById("output")||document.body,t=document.createElement("canvas"),a=t.getContext("webgl2",{alpha:!0})||t.getContext("webgl",{alpha:!0});e.appendChild(t),t.tabIndex=1e3,t.id="canvas__imgui",t.style.position="absolute",t.style.left="0px",t.style.right="0px",t.style.top="0px",t.style.bottom="0px",t.style.width="100%",t.style.height="100%",t.style.userSelect="none",t.style.visibility="hidden",ImGui_Impl.Init(t),ImGui_Impl.gl=a}(),document.addEventListener("keyup",(e=>{if(45==e.keyCode&&Utils.isGameReady()&&Utils.isNotOpenChat()){menuShow=!menuShow;let e=document.getElementById("canvas__imgui");e.style.visibility=menuShow?"":"hidden",menuShow&&document.exitPointerLock()}})),CheatMenu.draw=function(e){menuShow&&(ImGui_Impl.NewFrame(e),ImGui.NewFrame(),ImGui.SetNextWindowSize(new ImGui.ImVec2(650,370),ImGui.Cond.FirstUseEver),ImGui.Begin(s,null,ImGui.WindowFlags.NoCollapse),ImGui.BeginTabBar("##tabbar",ImGui.TabBarFlags.None)&&(ImGui.BeginTabItem("Local Player")&&(Tabs.localPlayer(),ImGui.EndTabItem()),ImGui.BeginTabItem("Weapon")&&(Tabs.weapon(),ImGui.EndTabItem()),ImGui.BeginTabItem("Visuals")&&(Tabs.visuals(),ImGui.EndTabItem()),ImGui.BeginTabItem("Players")&&(Tabs.players(),ImGui.EndTabItem()),ImGui.EndTabBar()),ImGui.End(),ImGui.EndFrame(),ImGui.Render(),ImGui_Impl.RenderDrawData(ImGui.GetDrawData()))},ImGui.StyleColorsDark=function(){let e=ImGui.GetStyle().Colors;ImGui.GetStyle().WindowPadding=new ImGui.ImVec2(5,5),ImGui.GetStyle().FramePadding=new ImGui.ImVec2(5,5),ImGui.GetStyle().ItemSpacing=new ImGui.ImVec2(5,5),ImGui.GetStyle().ItemInnerSpacing=new ImGui.ImVec2(2,2),ImGui.GetStyle().TouchExtraPadding=new ImGui.ImVec2(0,0),ImGui.GetStyle().IndentSpacing=0,ImGui.GetStyle().ScrollbarSize=10,ImGui.GetStyle().GrabMinSize=10,ImGui.GetStyle().WindowBorderSize=1,ImGui.GetStyle().ChildBorderSize=1,ImGui.GetStyle().PopupBorderSize=1,ImGui.GetStyle().FrameBorderSize=1,ImGui.GetStyle().TabBorderSize=1,ImGui.GetStyle().WindowRounding=5,ImGui.GetStyle().ChildRounding=5,ImGui.GetStyle().FrameRounding=5,ImGui.GetStyle().PopupRounding=5,ImGui.GetStyle().ScrollbarRounding=5,ImGui.GetStyle().GrabRounding=5,ImGui.GetStyle().TabRounding=5,ImGui.GetStyle().WindowTitleAlign.x=.5,ImGui.GetStyle().WindowTitleAlign.y=.5,ImGui.GetStyle().ButtonTextAlign.x=.5,ImGui.GetStyle().ButtonTextAlign.y=.5,ImGui.GetStyle().SelectableTextAlign.x=.5,ImGui.GetStyle().SelectableTextAlign.y=.5,ImGui.GetStyle().WindowPadding.x=5,ImGui.GetStyle().WindowPadding.y=5,ImGui.GetStyle().FramePadding.x=5,ImGui.GetStyle().FramePadding.y=5,ImGui.GetStyle().ItemSpacing.x=5,ImGui.GetStyle().ItemSpacing.y=5,ImGui.GetStyle().ItemSpacing.x=2,ImGui.GetStyle().ItemSpacing.y=2,ImGui.GetStyle().TouchExtraPadding.x=0,ImGui.GetStyle().TouchExtraPadding.y=0,e[ImGui.Col.Text]=new ImGui.Vec4(1,1,1,1),e[ImGui.Col.TextDisabled]=new ImGui.Vec4(.5,.5,.5,1),e[ImGui.Col.WindowBg]=new ImGui.Vec4(.07,.07,.07,1),e[ImGui.Col.ChildBg]=new ImGui.Vec4(.07,.07,.07,1),e[ImGui.Col.PopupBg]=new ImGui.Vec4(.07,.07,.07,1),e[ImGui.Col.Border]=new ImGui.Vec4(.25,.25,.26,.54),e[ImGui.Col.BorderShadow]=new ImGui.Vec4(0,0,0,0),e[ImGui.Col.FrameBg]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.FrameBgHovered]=new ImGui.Vec4(.25,.25,.26,1),e[ImGui.Col.FrameBgActive]=new ImGui.Vec4(.25,.25,.26,1),e[ImGui.Col.TitleBg]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.TitleBgActive]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.TitleBgCollapsed]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.MenuBarBg]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.ScrollbarBg]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.ScrollbarGrab]=new ImGui.Vec4(0,0,0,1),e[ImGui.Col.ScrollbarGrabHovered]=new ImGui.Vec4(.41,.41,.41,1),e[ImGui.Col.ScrollbarGrabActive]=new ImGui.Vec4(.51,.51,.51,1),e[ImGui.Col.CheckMark]=new ImGui.Vec4(1,1,1,1),e[ImGui.Col.SliderGrab]=new ImGui.Vec4(.21,.2,.2,1),e[ImGui.Col.SliderGrabActive]=new ImGui.Vec4(.21,.2,.2,1),e[ImGui.Col.Button]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.ButtonHovered]=new ImGui.Vec4(.21,.2,.2,1),e[ImGui.Col.ButtonActive]=new ImGui.Vec4(.41,.41,.41,1),e[ImGui.Col.Header]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.HeaderHovered]=new ImGui.Vec4(.2,.2,.2,1),e[ImGui.Col.HeaderActive]=new ImGui.Vec4(.47,.47,.47,1),e[ImGui.Col.Separator]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.SeparatorHovered]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.SeparatorActive]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.ResizeGrip]=new ImGui.Vec4(1,1,1,.25),e[ImGui.Col.ResizeGripHovered]=new ImGui.Vec4(1,1,1,.67),e[ImGui.Col.ResizeGripActive]=new ImGui.Vec4(1,1,1,.95),e[ImGui.Col.Tab]=new ImGui.Vec4(.12,.12,.12,1),e[ImGui.Col.TabHovered]=new ImGui.Vec4(.28,.28,.28,1),e[ImGui.Col.TabActive]=new ImGui.Vec4(.3,.3,.3,1),e[ImGui.Col.TabUnfocused]=new ImGui.Vec4(.07,.1,.15,.97),e[ImGui.Col.TabUnfocusedActive]=new ImGui.Vec4(.14,.26,.42,1),e[ImGui.Col.PlotLines]=new ImGui.Vec4(.61,.61,.61,1),e[ImGui.Col.PlotLinesHovered]=new ImGui.Vec4(1,.43,.35,1),e[ImGui.Col.PlotHistogram]=new ImGui.Vec4(.9,.7,0,1),e[ImGui.Col.PlotHistogramHovered]=new ImGui.Vec4(1,.6,0,1),e[ImGui.Col.TextSelectedBg]=new ImGui.Vec4(1,0,0,.35),e[ImGui.Col.DragDropTarget]=new ImGui.Vec4(1,1,0,.9),e[ImGui.Col.NavHighlight]=new ImGui.Vec4(.26,.59,.98,1),e[ImGui.Col.NavWindowingHighlight]=new ImGui.Vec4(1,1,1,.7),e[ImGui.Col.NavWindowingDimBg]=new ImGui.Vec4(.8,.8,.8,.2),e[ImGui.Col.ModalWindowDimBg]=new ImGui.Vec4(0,0,0,.7)},Tabs.localPlayer=function(){ImGui.Checkbox("AirBreak [R. Shift]",airBreak.enabled.access),ImGui.SameLine(),ImGui.PushItemWidth(120),ImGui.SliderInt("Speed##airBreak.speed",airBreak.speed.access,1,300),ImGui.SameLine(),ImGui.SliderInt("Smooth##airBreak.smooth",airBreak.smooth.access,1,20),ImGui.PopItemWidth(2),ImGui.SameLine(),ImGui.Checkbox("AirWalk",airBreak.airWalk.access),ImGui.Checkbox("Sync",syncData.state.access),syncData.state.value&&(ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("Anti Mine",syncData.antiMine.access),syncData.antiMine.value&&(ImGui.SameLine(),ImGui.InputInt("Height",syncData.antiMineHeight.access,10,10)),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("Spinner",syncData.spinner.access),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("Random Teleport",syncData.randomTeleport.access),syncData.randomTeleport.value&&(syncData.deSyncData.state.value=!1,syncData.fakeLagData.state.value=!1,syncData.antiStrikerHackData.state.value=!1,syncData.spinner.value=!1,syncData.antiMine.value=!1),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("deSync",syncData.deSyncData.state.access),syncData.deSyncData.state.value&&(ImGui.SameLine(),ImGui.Checkbox("Teleport to Real Position",syncData.deSyncData.teleportToRealPosition.access),syncData.randomTeleport.value=!1,syncData.fakeLagData.state.value=!1,syncData.antiStrikerHackData.state.value=!1,syncData.spinner.value=!1,syncData.antiMine.value=!1),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("Fake Lag",syncData.fakeLagData.state.access),syncData.fakeLagData.state.value&&(ImGui.SameLine(),ImGui.InputInt("Distance",syncData.fakeLagData.distance.access,10,100),syncData.fakeLagData.distance.value<0&&(syncData.fakeLagData.distance.value=0),syncData.randomTeleport.value=!1,syncData.deSyncData.state.value=!1,syncData.antiStrikerHackData.state.value=!1),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("Avoid Striker Hack",syncData.antiStrikerHackData.state.access),syncData.antiStrikerHackData.state.value&&(syncData.randomTeleport.value=!1,syncData.deSyncData.state.value=!1,syncData.fakeLagData.state.value=!1)),ImGui.Checkbox("Auto Healing",clickerData.autoHealingData.state.access),clickerData.autoHealingData.state.value&&(ImGui.SameLine(),ImGui.PushItemWidth(120),ImGui.SliderInt("Multiply##AHM",clickerData.autoHealingData.mply.access,1,5),ImGui.SameLine(),ImGui.InputInt("Delay##AHD",clickerData.autoHealingData.delay.access,10),ImGui.PopItemWidth(2),clickerData.autoHealingData.delay.value<0&&(clickerData.autoHealingData.delay.value=0)),ImGui.Checkbox("Auto Mining",clickerData.autoMining.access),ImGui.SameLine(),ImGui.Checkbox("Auto Supplies",clickerData.autoSupplies.access),ImGui.Checkbox("No Collision",otherData.noCollision.access),ImGui.SliderInt("Gravity",otherData.gravity.access,-1e3,1e3),ImGui.SliderFloat("No Knockback",noKnockbackMply.access,0,2),ImGui.Checkbox("Box Teleport",boxTeleport.access),ImGui.Checkbox("SpeedHack",otherData.speedHack.access),ImGui.Checkbox("Flag Teleport",flagTeleportData.state.access),ImGui.Checkbox("Rapid Update",otherData.rapidUpdateData.state.access),otherData.rapidUpdateData.state.value&&(ImGui.SameLine(),ImGui.PushItemWidth(120),ImGui.SliderInt("Multiply##RUM",otherData.rapidUpdateData.mply.access,1,5),ImGui.SameLine(),ImGui.InputInt("Delay##RUD",otherData.rapidUpdateData.delay.access,10),ImGui.PopItemWidth(2),otherData.rapidUpdateData.delay.value<0&&(otherData.rapidUpdateData.delay.value=0))},Tabs.weapon=function(){ImGui.Text("Striker / Scorpion"),ImGui.Checkbox("Aim-Bot##striker",strikerData.aimBot.access),ImGui.SameLine(),ImGui.Checkbox("Rockets Teleport##striker",strikerData.shellsTeleport.access),ImGui.SameLine(),ImGui.Checkbox("Lock Target With Scope##striker",strikerData.getTargetWithScope.access),ImGui.Separator()};const rgbToHex=e=>[parseInt((255*e[0]).toFixed(1)),parseInt((255*e[1]).toFixed(1)),parseInt((255*e[2]).toFixed(1))].map((e=>{const t=e.toString(16);return 1===t.length?"0"+t:t})).join("");let colorEnemyRGB=new ImGui_Var([.6,0,.3]),colorTeamRGB=new ImGui_Var([.6,.6,1]),colorTargetRGB=new ImGui_Var([.4,1,.4]);Tabs.visuals=function(){ImGui.Checkbox("Glow ESP",espData.enabled.access),espData.enabled.value&&(ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("Only Enemy",espData.onlyEnemy.access),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.Checkbox("Box ESP",espData.boxGlow.access),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.ColorEdit3("Color Enemy",colorEnemyRGB.value),espData.colorEnemy=parseInt(rgbToHex(colorEnemyRGB.value),16),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.ColorEdit3("Color Team",colorTeamRGB.value),espData.colorTeam=parseInt(rgbToHex(colorTeamRGB.value),16),ImGui.SetCursorPosX(ImGui.GetCursorPosX()+15),ImGui.ColorEdit3("Color Target",colorTargetRGB.value),espData.colorTarget=parseInt(rgbToHex(colorTargetRGB.value),16)),ImGui.Checkbox("Remove Mines",removeMines.access)};let targetId,selected=new ImGui_Var(-1),selectedPlayerName="none",onlyEnemy=new ImGui_Var(!1);Tabs.players=function(){let e=GameObjects.getLocalPlayer();if(!e)return;let t=GameObjects.getWorld();if(!t)return;if(!GameObjects.getPhysicsComponent())return;if(!GameObjects.getCamera())return;ImGui.Checkbox("Only enemy",onlyEnemy.access);let a=Utils.getPlayers(t,e,onlyEnemy.value);if(!a)return null;if(0==a.length)return null;for(let e=0;e<a.length;e++){if(!a.at(e))continue;if(0==a.at(e).length)continue;let t=Utils.getPlayerName(a.at(e));ImGui.Selectable(t,selected.value===e)&&(selectedPlayerName=t,selected.value=e)}if(ImGui.Separator(),selected.value>=0){if(!a.at(selected.value))return;if(0==a.at(selected.value).length)return;ImGui.Text(`Selected player: ${selectedPlayerName}`);let e=Utils.getPlayerBody(a.at(selected.value));if(!e)return;if(ImGui.Button("Set target"))for(let e=0;e<a.at(selected.value).length;e++)if(a.at(selected.value).at(e).__proto__.hasOwnProperty("userId")){targetId=a.at(selected.value).at(e).userId;break}ImGui.SameLine(),ImGui.Checkbox("Stick",stickData.state.access),stickData.state.access&&(stickData.target=e)}};let init=!1,frameCounter=0,pingKey=74;function reset(){init=airBreak.state=stickData.state.value=menuShow=!1,flagTeleportData.cooldown=!0,document.getElementById("canvas__imgui").style.visibility="hidden",stickData.target=null,gameObjects={localPlayer:null,world:null,gameMode:null,gameActions:null,mines:null,flags:null,physicsComponent:null,healthComponent:null,camera:null,trackedChassis:null,speedCharacteristics:null,serverUpdates:null,strikerComponent:null},clickerData.autoHealingData.supplyData={firstAID:null,mine:null}}function mainEvent(e){if(!init&&Utils.isGameReady()){let e=GameObjects.getLocalPlayer();e&&(init=!0,Sync.init(e),Striker.init(e),NoKnockback.init(e))}else init&&!Utils.isGameReady()&&reset();if(init){let t=GameObjects.getLocalPlayer();Stick.process(t),AirBreak.process(t),BoxTeleport.process(t),FlagTeleport.process(t),Clicker.process(t),Other.process(t),frameCounter++,frameCounter>=2&&(Striker.process(t),WallHack.process(t),RemoveMines.process(t),frameCounter=0),CheatMenu.draw(e)}requestAnimationFrame(mainEvent)}Utils.getStates(),setInterval(Utils.saveStates,5e3),requestAnimationFrame(mainEvent),console.clear(),alert("Используйте только на тестовом сервере и только в режиме паркур!\n\nUse only on the test server and only in parkour mode!");
+TPspeed = 100
+
+class commons{
+getRoot = null
+getReactRoot = null
+getChatState = null 
+searchObject = null
+getRandom = null
+}
+
+
+class game{
+getTankPhysics = null
+getTank = null  
+getWorld = null  
+getMines = null
+getFlags = null
+getPlayers = null
+getMapBoundary = null    
+getBattleState = null
+getSupplies = null
+getHealth = null
+getStriker = null
+getCamera = null
+getAirwalk = null
+}
+
+
+class hacks{
+airWalk = null
+clicker = null
+flagTP = null
+oneHitKill = null
+noLaser = null
+autoHeal = null
+simpleTP = null
+playerTP = null
+rapidUpdate = null
+randomTP = null
+TPFlagB = null
+TPFlagB = null
+goldTP = null
+speedhack = null
+
+
+}
+
+class vars{
+FlagA = null
+FlagB = null
+tpName = null  
+rocketCount = null
+shellCache = null
+  
+  
+}
+
+
+
+
+commons.searchObject = function(object,item){
+try {
+for(let i=0; i<object.length;i++){
+if(object[i].hasOwnProperty(item))
+return object[i]
+
+}      
+} catch (error) {
+    
+}  
+}
+
+
+ function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+
+commons.getRoot = function(){
+root = document.querySelector("#root")  
+return root
+}
+
+commons.getReactRoot = function(){
+return root._reactRootContainer._internalRoot.current.memoizedState.element.type.prototype.store.subscribers.array_hd7ov6$_0  
+  
+}
+
+
+
+commons.getRandom = function(min,max){
+return Math.floor(Math.random() * (max - min + 1) + min)
+  
+  
+}
+
+//keypressing
+
+
+class KeyPressing{static k=[];static i(){document.addEventListener('keydown',(e)=>{const c=e.keyCode;if(KeyPressing.k.includes(c)==!1){KeyPressing.k.push(c)}}); document.addEventListener('keyup',(e)=>{const c=e.keyCode;if(KeyPressing.k.includes(c)==!0){const a=KeyPressing.k.indexOf(c);if(a!==-1){KeyPressing.k.splice(a,1)}}})} static isKeyPressed(c){return KeyPressing.k.includes(c)}}KeyPressing.i()
+
+
+
+
+//GAME ITEMS
+
+
+
+game.getTank = function(){
+return commons.searchObject(commons.getReactRoot(),"tank").tank
+
+  
+  
+  
+}
+
+game.getWorld = function(){
+return game.getTank().world  
+  
+}
+
+game.getMines = function(){
+return game.getWorld().entities_0.array_hd7ov6$_0.at(0).components_0.array.at(15);  
+  
+  
+  
+}
+
+game.getMapBoundary = function(){
+return game.getWorld().entities_0.array_hd7ov6$_0.at(0).components_0.array.at(0).bounds
+}
+
+
+game.getPlayers = function(){
+return game.getTank().components_0.array[33].gameMode_0.tanksOnField
+  
+}
+game.getBattleState = function(){
+  
+return commons.getReactRoot().at(1).state.inBattle
+}
+
+commons.getChatState = function(){
+return document.querySelector(".sc-bwzfXH.iokmvL")
+}
+
+
+game.getStriker = function(){
+return commons.searchObject(game.getTank().components_0.array,"strikerWeapon_jjsiik$_0").strikerWeapon_jjsiik$_0
+  
+  
+  
+  
+}
+
+
+game.getHealth = function(){
+return game.getTank().components_0.array[1].isFullHealth()
+  
+  
+}
+
+game.getTankPhysics = function(){
+return game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0
+  
+  
+  
+}
+
+game.getCamera = function(){
+for (let i = 0; i < game.getTank().components_0.array.length; i++)
+  {
+    if(game.getTank().components_0.array[i].hasOwnProperty("followCamera_w8ai3w$_0"))
+    return game.getTank().components_0.array[i].followCamera_0.currState_0
+    
+  }
+}
+
+
+game.getFlags = function(){
+try {
+if(game.getWorld().triggers_0.triggers_0.array[0].flagBaseTriggerListener_0.flags_0.internalMap_uxhen5$_0.backingMap_0[1]._value_0.teamType.name == "TEAM_A"){
+vars.FlagA = game.getWorld().triggers_0.triggers_0.array[0].flagBaseTriggerListener_0.flags_0.internalMap_uxhen5$_0.backingMap_0[1]._value_0.getPosition()
+
+vars.FlagB = game.getWorld().triggers_0.triggers_0.array[0].flagBaseTriggerListener_0.flags_0.internalMap_uxhen5$_0.backingMap_0[0]._value_0.getPosition()
+
+    
+}    
+} catch (error) {
+    
+}}
+
+
+gtf = setInterval(game.getFlags,150)
+
+
+game.getAirwalk = function(){
+return commons.searchObject(game.getTank().components_0.array,"trackedChassis_eytv59$_0").trackedChassis_eytv59$_0  
+  
+}
+
+
+
+game.getSupplies = function(supply){
+try {
+for(key in game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0){
+if(game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[key].key_5xhq3d$_0.name$ == supply){
+return key 
+}
+
+
+}    
+} catch (error) {
+    
+}  
+  
+
+}
+
+function getSupplyArrays(){
+try {
+window.mines = game.getSupplies("MINE")  
+window.repairs = game.getSupplies("FIRST_AID")
+window.DA = game.getSupplies("DOUBLE_ARMOR")
+window.DD = game.getSupplies("DOUBLE_DAMAGE")
+window.NITRO = game.getSupplies("NITRO")  
+    
+} catch (error) {
+    
+}
+}
+
+supps = setInterval(getSupplyArrays,500)
+
+
+
+
+//HACKS
+
+hacks.noLaser = function(){
+
+try {
+commons.searchObject(game.getTank().components_0.array,"laserDirectionMessage_0").turnOffLaser_0()
+} catch (error) {
+ 
+}
+
+ 
+}
+
+
+
+
+
+
+
+
+hacks.speedhack = function(){
+try{
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = slider.value
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = slider.value
+game.getAirwalk().speedCharacteristics_0.acceleration = slider2.value
+ 
+}catch (error) {
+ return Error
+}
+
+}
+
+
+
+
+
+
+hacks.simpleTP = function()
+
+ {
+
+try {
+if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && game.getTankPhysics().body.state.position.x != game.getMapBoundary().maxX )
+    {
+       
+
+        
+            
+            game.getTankPhysics().body.state.position.x += TPspeed * Math.sin(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.y += TPspeed * Math.cos(-game.getCamera().direction);
+        
+    }
+
+    if (KeyPressing.isKeyPressed(83 /*key: S*/) && commons.getChatState()==null)
+    {
+        
+        game.getTankPhysics().body.state.position.x -= TPspeed * Math.sin(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.y -= TPspeed * Math.cos(-game.getCamera().direction);
+    }
+
+    if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null)
+    {
+        
+
+       
+           
+
+            game.getTankPhysics().body.state.position.x -= TPspeed * Math.sin(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.y -= TPspeed * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+        
+    }
+
+    if (KeyPressing.isKeyPressed(68 /*key: D*/) && commons.getChatState()==null)
+    {
+        
+
+       
+            game.getTankPhysics().body.state.position.x +=TPspeed * Math.sin(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.y += TPspeed * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+        
+    }
+   
+   if (KeyPressing.isKeyPressed(74 /*key: J*/) && commons.getChatState()==null)
+    {
+        
+
+       
+            game.getTankPhysics().body.state.position.z+=80
+        
+    }
+
+   
+   if (KeyPressing.isKeyPressed(70 /*key: F*/) && commons.getChatState()==null)
+    {
+        
+
+       
+            game.getTankPhysics().body.state.position.z-=80
+        
+    }
+   
+   
+   
+   
+    
+} catch (error) {
+ 
+}
+ 
+ 
+ 
+ 
+
+}
+
+
+function getTarget(){
+try {
+enemyID = game.getStriker().playerIdQuery_0.playerId 
+//window.target = game.getStriker().getPreferredTarget_0(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition
+ 
+} catch (error) {
+ 
+}
+}
+ 
+let gtr = setInterval(getTarget,100)
+
+
+
+hacks.clicker = function(){ 
+try {
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[mines]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[repairs]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DD]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DA]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[NITRO]._value_0._value_0.onUserActivatedSupply() 
+
+    
+} catch (error) {
+    
+} 
+
+
+}
+
+
+
+hacks.autoHeal = function(){
+try {
+if(game.getHealth()==false){
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[mines]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[repairs]._value_0._value_0.onUserActivatedSupply() 
+
+  
+}  
+      
+} catch (error) {
+    
+}
+
+  
+}
+
+
+
+
+
+hacks.rapidUpdate = function(){
+                      
+try {
+   game.getTank().components_0.array[37].sendState_0(game.getTankPhysics().getInterpolatedBodyState())    
+} catch (error) {
+     
+ }}
+
+
+hacks.TPFlagA = function(){
+try {
+if(commons.getChatState()==null){
+game.getTankPhysics().body_xsop3k$_0.state.position.x = vars.FlagA.x
+game.getTankPhysics().body_xsop3k$_0.state.position.y = vars.FlagA.y
+game.getTankPhysics().body_xsop3k$_0.state.position.z = vars.FlagA.z
+} 
+} catch (error) {
+ 
+}
+}
+
+
+hacks.TPFlagB = function(){
+try {
+if(commons.getChatState()==null){  
+game.getTankPhysics().body_xsop3k$_0.state.position.x = vars.FlagB.x
+game.getTankPhysics().body_xsop3k$_0.state.position.y = vars.FlagB.y
+game.getTankPhysics().body_xsop3k$_0.state.position.z = vars.FlagB.z
+} 
+} catch (error) {
+ 
+}
+}
+
+function getNames(){
+try {
+Table = document.getElementsByTagName("table")
+cName = Table[0].children[1].children[1].children[0].className
+tElems = document.getElementsByClassName(cName)  
+for(let i=0;i<tElems.length;i++){
+tElems[i].addEventListener("click",function(){
+splitArray = (tElems[i].innerText).split("]") 
+if(splitArray.length == 1){
+tpName = (tElems[i].innerText).trim()
+}
+if(splitArray.length == 2){
+tpName = (splitArray[1]).trim()
+}  
+  
+  
+  
+  
+})  
+}
+} catch (error) {
+    
+}
+}
+
+
+
+
+let gn = setInterval(getNames,100)
+
+
+
+
+
+
+function tpByName(){
+try {
+for (key in commons.searchObject(commons.getReactRoot(),"tank").store_0.state.battleUsers.uids.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0){
+if (commons.searchObject(commons.getReactRoot(),"tank").store_0.state.battleUsers.uids.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[key]._value_0._value_0 == tpName){
+tpUserID = commons.searchObject(commons.getReactRoot(),"tank").store_0.state.battleUsers.uids.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[key].key_5xhq3d$_0
+}
+
+
+}
+    
+} catch (error) {
+    
+}  
+
+
+
+
+}
+
+setInterval(tpByName,300)
+
+
+hacks.playerTP = function(){
+try {
+if(commons.getChatState()==null){ 
+try {
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.x = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.x
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.y = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.y
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.z = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.z+120
+    
+} catch (error) {
+    
+}
+} 
+} catch (error) {
+ 
+}
+}
+
+
+hacks.randomTP = function(){
+try {
+game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.x = commons.getRandom(game.getMapBoundary().minX,game.getMapBoundary().maxX)
+game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.y = commons.getRandom(game.getMapBoundary().minY,game.getMapBoundary().maxY)
+
+window.fakeR = requestAnimationFrame(hacks.randomTP)
+
+} catch (error) {
+  
+}  
+  
+}
+
+
+ 
+hacks.airWalk = function(){
+try {
+game.getAirwalk().params_nd1j3b$_0.maxRayLength = 11111111  
+game.getAirwalk().params_nd1j3b$_0.dampingCoeff = 0
+game.getAirwalk().params_nd1j3b$_0.springCoeff= 0
+   
+} catch (error) {
+ 
+}
+  
+}
+
+
+
+
+
+
+function sap(){try {
+for (let i = 0; i < vars.shellCache.length; i++)
+                            {   vars.shellCache.at(i).components_0.array.at(1).maxSpeed_0 = 0
+                                vars.shellCache.at(i).components_0.array.at(1).minSpeed_0 = 0;
+                                
+
+                            }    
+} catch (error) {
+    
+}}
+
+
+function sapm(){try {
+for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                               vars.shellCache.at(i).components_0.array.at(1).maxSpeed_0 = 35000
+                                vars.shellCache.at(i).components_0.array.at(1).minSpeed_0 = 2000;
+                                
+
+                            }    
+} catch (error) {
+    
+}}
+
+
+
+
+function ap(){try {
+for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                                vars.shellCache.at(i).components_0.array.at(1).direction.x = 0;
+                                vars.shellCache.at(i).components_0.array.at(1).direction.y = 0;
+                                vars.shellCache.at(i).components_0.array.at(1).direction.z = 0;                          
+                                
+
+                            }    
+} catch (error) {
+    
+}}
+
+
+function apm(){try {
+ for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                                
+                                vars.shellCache.at(i).components_0.array.at(1).position.x = game.getPlayers().getTank_s8cxhz$(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.x
+                                vars.shellCache.at(i).components_0.array.at(1).position.y = game.getPlayers().getTank_s8cxhz$(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.y
+                                vars.shellCache.at(i).components_0.array.at(1).position.z = game.getPlayers().getTank_s8cxhz$(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.z
+
+
+                            }
+} catch (error) {
+ 
+}}
+
+
+function tapm(){try {
+for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                                
+                                vars.shellCache.at(i).components_0.array.at(1).position.x = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.x
+                                vars.shellCache.at(i).components_0.array.at(1).position.y = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.y
+                                vars.shellCache.at(i).components_0.array.at(1).position.z = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.z
+
+
+                            } 
+} catch (error) {
+ 
+}}
+
+
+
+
+isTarget = false
+
+hacks.oneHitKill = function(){
+try {
+vars.shellCache = commons.searchObject(game.getTank().components_0.array,"shellCache_0").shellCache_0.itemsInUse_123ot1$_0.array_hd7ov6$_0
+
+    
+if(tprc%2==1){
+if(vars.shellCache.length<8){
+ap()
+
+    
+}
+
+if(vars.shellCache.length==8){
+ap()
+if(isTarget){ 
+setTimeout(tapm,1500)
+}
+if(isTarget==false){ 
+setTimeout(apm,1500)
+
+
+
+
+ 
+}
+    
+    
+}
+
+
+if(tprc%2==0){
+if(vars.shellCache.length<8){
+sap()
+
+    
+}
+
+if(vars.shellCache.length==8){
+sap()
+setTimeout(sapm,1500)
+    
+}
+
+    
+}
+
+
+
+    
+}
+ 
+} catch (error) {
+ 
+}
+}
+
+hacks.goldTP = function(){
+try {
+if(commons.getChatState()==null){
+for(let i =0;i<game.getWorld().triggers_0.triggers_0.array.length;i++){try {
+if(game.getWorld().triggers_0.triggers_0.array[i].bonus_0.bonusData_cqilaj$_0.bonusLight.lightColor.color==16777215){    
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.x = game.getWorld().triggers_0.triggers_0.array[i].collisionBox_0.aabb.minX
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.y = game.getWorld().triggers_0.triggers_0.array[i].collisionBox_0.aabb.minY
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.z = game.getWorld().triggers_0.triggers_0.array[i].collisionBox_0.aabb.minZ+150
+}     
+} catch (error) {
+    
+}}
+
+
+}
+ 
+} catch (error) {
+ 
+}
+}
+
+
+function noZVelocity(){
+
+
+try {
+game.getTankPhysics().body_xsop3k$_0.state.velocity.z = 0
+game.getWorld().physicsScene_0.gravity.z  = 0
+
+} catch (error) {
+    
+}
+    
+}
+
+function nt(){try {
+game.getTankPhysics().body.state.orientation.x = 0;
+    game.getTankPhysics().body.state.orientation.y = 0;
+   game.getTankPhysics().body.state.angularVelocity.y= 0
+    game.getTankPhysics().body.state.angularVelocity.x = 0; 
+} catch (error) {
+ 
+}}
+
+
+
+function removeAllMines(){
+try {
+ for(player in game.getPlayers().list_0.array
+){
+
+mineOwnerID = game.getPlayers().list_0.array[player]
+.components_0.array[4].userId 
+game.getMines().removeAllMines_0(mineOwnerID)
+
+
+    
+}
+} catch (error) {
+ 
+}
+
+
+    
+}
+
+
+window.mineDecluster= function(){
+for(let i=0;i<16;i++){
+for(let j=0;j<game.getWorld().triggers_0.triggers_0.array.length;j++){
+try {
+if(i<16){    
+parentMine = game.getWorld().triggers_0.triggers_0.array[j]
+childMine = game.getWorld().triggers_0.triggers_0.array[j+1]
+
+if(parentMine.position.x==childMine.position.x){
+
+
+childMine.removeMine_0()
+    
+}
+
+
+}    
+} catch (error) {
+    
+}
+
+}
+}
+
+}
+
+
+
+
+
+
+
+function removeMyMines(){for(key in game.getWorld().triggers_0.triggers_0.array){
+
+try {
+if(game.getWorld().triggers_0.triggers_0.array[key].ownerId.low_==game.getTank().components_0.array[4].userId.low_)
+
+{
+game.getWorld().triggers_0.triggers_0.array[key].removeMine_0()
+
+
+    
+}    
+} catch (error) {
+    
+}
+
+
+
+}}
+
+
+
+
+//event listeners
+
+
+
+WpressCount = 0
+document.addEventListener('keydown', function (event) { if (event.key === 'F10'){
+WpressCount ++
+if(WpressCount%2==1){
+root.appendChild(hackWindow)
+
+   
+}
+
+if(WpressCount%2==0){
+
+root.removeChild(hackWindow)
+   
+}
+
+
+}})
+
+  
+
+root = document.querySelector("#root")
+hackWindow = document.createElement("div")
+hackWindow_style={
+    display: "flex",
+    backgroundColor: "rgb(12 12 12 / 28%)",
+    height:"500px",
+    width:"250px",
+    position:"absolute",
+    opacity: "0.55",
+    left:"50%",
+    right:"50%",
+    transform:"translate(-50%,-50%)",
+    borderRadius:"20px",
+    borderBottom:"1px solid black",
+    borderLeft:"1px solid black",
+    borderTop:"1px solid black",
+    borderRight:"1px solid black",
+    borderWidth:"3px"
+}
+hackWindow.style.outline = "1px solid red"
+//Object.assign():
+Object.assign(hackWindow.style,hackWindow_style);
+root.appendChild(hackWindow)
+
+function draggable(el) {
+ 
+  el.addEventListener('mousedown', function(e) {
+    var offsetX = e.clientX - parseInt(window.getComputedStyle(this).left);
+    var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
+    
+    function mouseMoveHandler(e) {
+     if(e.target!=slider && e.target!=slider2 && e.target!=slider3 && e.target!=slider4){
+      el.style.top = (e.clientY - offsetY) + 'px';
+      el.style.left = (e.clientX - offsetX) + 'px';
+     }
+     }
+
+    function reset() {
+      window.removeEventListener('mousemove', mouseMoveHandler);
+      window.removeEventListener('mouseup', reset);
+    }
+
+    window.addEventListener('mousemove', mouseMoveHandler);
+    window.addEventListener('mouseup', reset);
+  }
+                     
+                     );
+}
+
+
+
+title = document.createElement("span")
+title.innerText = "HACKS"
+hackWindow.appendChild(title)
+
+title_style = {
+
+color:"white",
+textAlign:"center",
+fontSize : "23px",
+padding: "23px 30%",
+   
+
+
+    
+}
+
+
+
+Object.assign(title.style,title_style)
+
+
+notiltButton = document.createElement("div")
+autoclickerButton = document.createElement("div")
+autoHealButton = document.createElement("div")
+PlayerTPButton = document.createElement("div")
+SpeedhackButton = document.createElement("div")
+SimpleTPButton = document.createElement("div")
+rapidUpdateButton = document.createElement("div")
+//AirwalkButton = document.createElement("div")
+//GoldTPButton = document.createElement("div")
+
+
+
+checkboxUnticked_style = {
+position:"absolute",
+width:"0.1px",
+height:"0.1px",
+backgroundColor:"#8080803b",
+outline:"none",
+borderRadius:"12px",
+boxShadow:"inset 0 0 5px tgba(0,0,0,.2)",
+transition:".5s",
+padding:"6px 8%", 
+
+
+    
+}
+
+
+
+checkboxTicked_style = {
+backgroundColor:"#97cdea",
+
+
+
+
+
+    
+}
+
+
+
+
+function applyButtons(b1,b2,b3,b4,b5,b6,b7){
+
+Object.assign(b1.style,checkboxUnticked_style)
+Object.assign(b2.style,checkboxUnticked_style)
+Object.assign(b3.style,checkboxUnticked_style)
+Object.assign(b4.style,checkboxUnticked_style)
+Object.assign(b5.style,checkboxUnticked_style)
+Object.assign(b6.style,checkboxUnticked_style)
+Object.assign(b7.style,checkboxUnticked_style)
+
+    
+b1.style.marginLeft = "70%"
+b2.style.marginLeft = "70%"
+b3.style.marginLeft = "70%"
+b4.style.marginLeft = "70%"
+b5.style.marginLeft = "70%"
+b6.style.marginLeft = "70%"
+b7.style.marginLeft = "70%"
+
+
+b1.style.bottom = "80%"                                                
+b2.style.bottom = "71.9%"
+b3.style.bottom = "64%"
+b4.style.bottom = "56%"
+b5.style.bottom = "47.8%"
+b6.style.bottom = "40%"
+b7.style.bottom = "32%"
+
+
+
+
+
+
+
+}
+
+
+
+function applyLabels(l1,l2,l3,l4,l5,l6,l7){
+
+l1.style.fontSize = "15px"
+l2.style.fontSize = "15px"
+l3.style.fontSize = "15px"
+l4.style.fontSize = "15px"
+l5.style.fontSize = "15px"
+l6.style.fontSize = "15px"
+l7.style.fontSize = "15px"
+
+l1.style.position = "absolute"
+l2.style.position = "absolute"
+l3.style.position = "absolute"
+l4.style.position = "absolute"
+l5.style.position = "absolute"
+l6.style.position = "absolute"
+l7.style.position = "absolute"
+
+
+l1.style.bottom = "80%"
+l1.style.padding = "35% 0px 0px 25px"
+l2.style.padding = "50% 0px 0px 25px"
+l3.style.padding = "65.8% 0px 0px 25px"
+l4.style.padding = "65.8% 0px 0px 25px"
+l4.style.bottom = "55%"    
+l5.style.bottom = "47%"
+l5.style.padding = "65.8% 0px 0px 25px"
+l6.style.bottom = "39%"
+l6.style.padding = "65.8% 0px 0px 25px"
+l7.style.padding = "65.8% 0px 0px 25px"
+l7.style.bottom = "31%"
+
+    
+}
+
+
+applyButtons(notiltButton,autoclickerButton,autoHealButton,PlayerTPButton,SpeedhackButton,SimpleTPButton,rapidUpdateButton)
+
+
+//page1
+
+Notilt = document.createElement("span")
+Autoclicker= document.createElement("span")
+Autoheal= document.createElement("span")
+PlayerTP= document.createElement("span")
+GoldTP= document.createElement("span")
+rapidUpdate= document.createElement("span")
+Airwalk= document.createElement("span")
+SimpleTP= document.createElement("span")
+Speedhack= document.createElement("span")
+
+Notilt.innerText = "Notilt:"
+Autoclicker.innerText = "Autoclicker:"
+Autoheal.innerText = "Autoheal:"
+PlayerTP.innerText = "Player TP [V]:"
+SimpleTP.innerText = "Simple TP:"
+rapidUpdate.innerText = "Rapid Update:"
+Speedhack.innerText = "Speedhack:"
+
+
+
+
+applyLabels(Notilt,Autoclicker,Autoheal,PlayerTP,Speedhack,SimpleTP,rapidUpdate)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hackWindow.appendChild(notiltButton)
+hackWindow.appendChild(autoclickerButton)
+hackWindow.appendChild(autoHealButton)
+hackWindow.appendChild(PlayerTPButton)
+hackWindow.appendChild(SpeedhackButton)
+hackWindow.appendChild(SimpleTPButton)
+hackWindow.appendChild(rapidUpdateButton)
+
+
+hackWindow.appendChild(Notilt)
+hackWindow.appendChild(Autoclicker)
+hackWindow.appendChild(Autoheal)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(Speedhack)
+hackWindow.appendChild(SimpleTP)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(rapidUpdate)
+
+
+
+
+innerCircle1  = document.createElement("div")
+innerCircle2  = document.createElement("div")
+innerCircle3  = document.createElement("div")
+innerCircle4  = document.createElement("div")
+innerCircle5  = document.createElement("div")
+innerCircle6  = document.createElement("div")
+innerCircle7  = document.createElement("div")
+
+innerCircle_style = {
+width:"30%",
+height:"100%",
+backgroundColor:"white",
+position:"absolute",
+borderRadius:"10px",
+top: "2%",
+right: "63%",
+transition:"right 0.7s"
+    
+}
+
+Object.assign(innerCircle1.style,innerCircle_style)
+Object.assign(innerCircle2.style,innerCircle_style)
+Object.assign(innerCircle3.style,innerCircle_style)
+Object.assign(innerCircle4.style,innerCircle_style)
+Object.assign(innerCircle5.style,innerCircle_style)
+Object.assign(innerCircle6.style,innerCircle_style)
+Object.assign(innerCircle7.style,innerCircle_style)
+
+
+notiltButton.appendChild(innerCircle1)
+autoclickerButton.appendChild(innerCircle2)
+autoHealButton.appendChild(innerCircle3)
+PlayerTPButton.appendChild(innerCircle4)
+SpeedhackButton.appendChild(innerCircle5)
+SimpleTPButton.appendChild(innerCircle6)
+rapidUpdateButton.appendChild(innerCircle7)
+
+
+
+
+
+
+page1 = document.createElement("div")
+page2 = document.createElement("div")
+page3 = document.createElement("div")
+page4 = document.createElement("div")
+
+
+page_style = {
+position:'absolute',
+width:"6%",
+height:"3%",
+borderRadius : "20px",
+backgroundColor:"black",
+bottom:"11%",
+
+
+
+    
+}
+
+Object.assign(page1.style,page_style)
+Object.assign(page2.style,page_style)
+Object.assign(page3.style,page_style)
+Object.assign(page4.style,page_style)
+
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+page1.style.marginLeft = "20%"
+page2.style.marginLeft = "38%"
+page3.style.marginLeft = "57%"
+page4.style.marginLeft = "76%"
+
+//page1 end
+
+
+//page2
+
+
+hackWindow.style.backdropFilter = "blur(1.7px)"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//page2 end
+
+
+
+
+
+//click count vars
+ncc =0
+acc=0
+ahc=0
+ptc = 0
+shc = 0
+smc = 0
+rtc = 0
+
+//end vars
+
+
+//js for buttons
+notiltButton.addEventListener("click",function(){
+ncc +=1
+
+
+if(ncc%2==1){
+notiltButton.style.backgroundColor="rgb(109 24 137)"
+notiltButton.children[0].style.right = "10%"
+notiltButton.children[0].style.backgroundColor = "black"
+
+window.NZR = setInterval(noZVelocity,1)
+window.ntr = setInterval(nt,1)
+window.rgt = game.getWorld().physicsScene_0.gravity.z 
+
+  
+
+}
+
+if(ncc%2==0){
+notiltButton.style.backgroundColor="#8080803b"
+notiltButton.children[0].style.right = "63%"
+notiltButton.children[0].style.backgroundColor = "white" 
+clearInterval(window.NZR)
+clearInterval(window.ntr)
+game.getWorld().physicsScene_0.gravity.z = window.rgt
+game.getTankPhysics().body_xsop3k$_0.state.velocity.z = -1.3
+
+}
+
+
+    
+})
+
+
+autoclickerButton.addEventListener("click",function(){
+acc +=1
+
+
+if(acc%2==1){
+autoclickerButton.style.backgroundColor="rgb(109 24 137)"
+autoclickerButton.children[0].style.right = "10%"
+autoclickerButton.children[0].style.backgroundColor = "black"   
+window.p = setInterval(hacks.clicker,slider4.value)
+}
+
+if(acc%2==0){
+autoclickerButton.style.backgroundColor="#8080803b"
+autoclickerButton.children[0].style.right = "63%"
+autoclickerButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.p)
+}
+
+
+    
+})
+
+
+autoHealButton.addEventListener("click",function(){
+ahc +=1
+
+
+if(ahc%2==1){
+autoHealButton.style.backgroundColor="rgb(109 24 137)"
+autoHealButton.children[0].style.right = "10%"
+autoHealButton.children[0].style.backgroundColor = "black"   
+window.autoR = setInterval(hacks.autoHeal,1)
+}
+
+if(ahc%2==0){
+autoHealButton.style.backgroundColor="#8080803b"
+autoHealButton.children[0].style.right = "63%"
+autoHealButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.autoR)
+
+
+}
+
+
+    
+})
+
+
+
+PlayerTPButton.addEventListener("click",function(){
+ptc +=1
+
+
+if(ptc%2==1){
+PlayerTPButton.style.backgroundColor="rgb(109 24 137)"
+PlayerTPButton.children[0].style.right = "10%"
+PlayerTPButton.children[0].style.backgroundColor = "black"   
+document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()
+root.style.backgroundColor = "black"
+
+}})
+
+}
+
+if(ptc%2==0){
+PlayerTPButton.style.backgroundColor="#8080803b"
+PlayerTPButton.children[0].style.right = "63%"
+PlayerTPButton.children[0].style.backgroundColor = "white"   
+document.removeEventListener("keydown",window.tpS)
+
+}
+
+    
+})
+
+
+SpeedhackButton.addEventListener("click",function(){
+shc +=1
+
+
+if(shc%2==1){
+SpeedhackButton.style.backgroundColor="rgb(109 24 137)"
+SpeedhackButton.children[0].style.right = "10%"
+SpeedhackButton.children[0].style.backgroundColor = "black"   
+window.speed = setInterval(hacks.speedhack,500)
+}
+
+if(shc%2==0){
+SpeedhackButton.style.backgroundColor="#8080803b"
+SpeedhackButton.children[0].style.right = "63%"
+SpeedhackButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.speed)
+}
+
+
+    
+})
+
+
+
+
+SimpleTPButton.addEventListener("click",function(){
+smc +=1
+
+
+if(smc%2==1){
+SimpleTPButton.style.backgroundColor="rgb(109 24 137)"
+SimpleTPButton.children[0].style.right = "10%"
+SimpleTPButton.children[0].style.backgroundColor = "black"   
+window.ckp = setInterval(hacks.simpleTP)
+}
+
+if(smc%2==0){
+SimpleTPButton.style.backgroundColor="#8080803b"
+SimpleTPButton.children[0].style.right = "63%"
+SimpleTPButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.ckp)
+}
+
+
+    
+})
+
+
+rapidUpdateButton.addEventListener("click",function(){
+rtc +=1
+
+
+if(rtc%2==1){
+rapidUpdateButton.style.backgroundColor="rgb(109 24 137)"
+rapidUpdateButton.children[0].style.right = "10%"
+rapidUpdateButton.children[0].style.backgroundColor = "black"   
+window.ru = setInterval(hacks.rapidUpdate,10)
+
+  
+}
+
+if(rtc%2==0){
+rapidUpdateButton.style.backgroundColor="#8080803b"
+rapidUpdateButton.children[0].style.right = "63%"
+rapidUpdateButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.ru)
+
+
+
+
+}
+
+
+    
+})
+
+root.removeChild(hackWindow)
+
+
+//rgba(114, 56, 56, 0.08);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+//document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
+
+
+
+
+
+
+
+
+
+
+
+//page2
+
+
+airwalkBtn = document.createElement("div")
+randomBtn = document.createElement("div")
+FlagTPBtn= document.createElement("div")
+GoldTPBtn =document.createElement("div")
+MineHackBtn = document.createElement("div")
+NoKnockbackBtn = document.createElement("div")
+IgnoreTexturesBtn = document.createElement("div")
+
+
+
+innerCircle8  = document.createElement("div")
+innerCircle9  = document.createElement("div")
+innerCircle10  = document.createElement("div")
+innerCircle11 = document.createElement("div")
+innerCircle12  = document.createElement("div")
+innerCircle13  = document.createElement("div")
+innerCircle14  = document.createElement("div")
+
+
+Object.assign(innerCircle8.style,innerCircle_style)
+Object.assign(innerCircle9.style,innerCircle_style)
+Object.assign(innerCircle10.style,innerCircle_style)
+Object.assign(innerCircle11.style,innerCircle_style)
+Object.assign(innerCircle12.style,innerCircle_style)
+Object.assign(innerCircle13.style,innerCircle_style)
+Object.assign(innerCircle14.style,innerCircle_style)
+
+
+airwalkBtn.appendChild(innerCircle8)
+randomBtn.appendChild(innerCircle9)
+FlagTPBtn.appendChild(innerCircle10)
+GoldTPBtn.appendChild(innerCircle11)
+MineHackBtn.appendChild(innerCircle12)
+NoKnockbackBtn.appendChild(innerCircle13)
+IgnoreTexturesBtn.appendChild(innerCircle14)
+
+
+
+
+
+applyButtons(airwalkBtn,randomBtn,FlagTPBtn,GoldTPBtn,MineHackBtn,NoKnockbackBtn,IgnoreTexturesBtn)
+
+Airwalk= document.createElement("span")
+randomTP= document.createElement("span")
+flagTP = document.createElement("span")
+GoldTP= document.createElement("span")
+Minehack = document.createElement("span")
+NoKnockback = document.createElement("span")
+IgnoreTextures= document.createElement("span")
+
+
+
+applyLabels(Airwalk,randomTP,flagTP,GoldTP,Minehack,NoKnockback,IgnoreTextures)
+
+
+
+Airwalk.innerText = "Airwalk:"
+randomTP.innerText = "Random TP:"
+flagTP.innerText = "Flag TP [N]:"
+GoldTP.innerText = "Gold TP [T]:"
+Minehack.innerText = "Minehack:"
+NoKnockback.innerText = "No Knockback:"
+IgnoreTextures.innerText = "Ignore Textures:"
+
+
+//counts
+awc = 0
+rwc = 0
+ftbc = 0
+gtbc = 0
+mhc = 0
+nkc = 0
+itc = 0
+//inner counts
+ftc = 0
+gtc = 0
+//end
+
+
+//event listeners
+
+
+airwalkBtn.addEventListener("click",function(){
+awc +=1
+
+
+if(awc%2==1){
+airwalkBtn.style.backgroundColor="rgb(109 24 137)"
+airwalkBtn.children[0].style.right = "10%"
+airwalkBtn.children[0].style.backgroundColor = "black"   
+airw = setInterval(hacks.airWalk,1000)  
+}
+
+if(awc%2==0){
+airwalkBtn.style.backgroundColor="#8080803b"
+airwalkBtn.children[0].style.right = "63%"
+airwalkBtn.children[0].style.backgroundColor = "white"   
+try {
+clearInterval(airw)
+game.getAirwalk().params_nd1j3b$_0.dampingCoeff= 2000
+game.getAirwalk().params_nd1j3b$_0.maxRayLength= 50
+game.getAirwalk().params_nd1j3b$_0.springCoeff= 16000 
+} catch (error) {
+ 
+}
+}
+
+
+    
+})
+
+
+randomBtn.addEventListener("click",function(){
+awc +=1
+
+
+if(awc%2==1){
+randomBtn.style.backgroundColor="rgb(109 24 137)"
+randomBtn.children[0].style.right = "10%"
+randomBtn.children[0].style.backgroundColor = "black"   
+hacks.randomTP()
+
+
+}
+
+if(awc%2==0){
+randomBtn.style.backgroundColor="#8080803b"
+randomBtn.children[0].style.right = "63%"
+randomBtn.children[0].style.backgroundColor = "white"   
+cancelAnimationFrame(window.fakeR)
+}
+
+
+    
+})
+
+
+
+
+FlagTPBtn.addEventListener("click",function(){
+ftbc +=1
+
+
+if(ftbc%2==1){
+FlagTPBtn.style.backgroundColor="rgb(109 24 137)"
+FlagTPBtn.children[0].style.right = "10%"
+FlagTPBtn.children[0].style.backgroundColor = "black"   
+document.addEventListener("keydown", window.ftp = function(e){
+if(e.key=="n"){
+
+ftc+=1
+if(ftc%2==1){
+
+hacks.TPFlagA()    
+}
+    
+if(ftc%2==0){
+
+hacks.TPFlagB()    
+}
+      
+}
+
+
+
+    
+})
+
+}
+
+if(ftbc%2==0){
+FlagTPBtn.style.backgroundColor="#8080803b"
+FlagTPBtn.children[0].style.right = "63%"
+FlagTPBtn.children[0].style.backgroundColor = "white"   
+document.removeEventListener("keydown",window.ftp)
+
+}
+
+
+    
+})
+
+
+
+
+
+GoldTPBtn.addEventListener("click",function(){
+gtbc +=1
+
+
+if(gtbc%2==1){
+GoldTPBtn.style.backgroundColor="rgb(109 24 137)"
+GoldTPBtn.children[0].style.right = "10%"
+GoldTPBtn.children[0].style.backgroundColor = "black"   
+document.addEventListener("keydown", window.gtp = function(e){
+if(e.key=="t" && commons.getChatState()==null){
+
+gtc+=1
+if(gtc%2==1){
+
+window.gtr = setInterval(hacks.goldTP,10)    
+}
+    
+if(gtc%2==0){
+
+clearInterval(window.gtr)
+}
+      
+}
+
+
+
+    
+})
+
+}
+
+if(gtbc%2==0){
+GoldTPBtn.style.backgroundColor="#8080803b"
+GoldTPBtn.children[0].style.right = "63%"
+GoldTPBtn.children[0].style.backgroundColor = "white"   
+document.removeEventListener("keydown",window.gtp)
+
+}
+
+
+    
+})
+
+
+
+MineHackBtn.addEventListener("click",function(){
+mhc +=1
+
+
+if(mhc%2==1){
+MineHackBtn.style.backgroundColor="rgb(109 24 137)"
+MineHackBtn.children[0].style.right = "10%"
+MineHackBtn.children[0].style.backgroundColor = "black"   
+window.ram = setInterval(removeAllMines,1000)
+}
+
+if(mhc%2==0){
+MineHackBtn.style.backgroundColor="#8080803b"
+MineHackBtn.children[0].style.right = "63%"
+MineHackBtn.children[0].style.backgroundColor = "white"   
+clearInterval(window.ram)
+}
+
+
+    
+})
+
+
+
+
+NoKnockbackBtn.addEventListener("click",function(){
+nkc +=1
+
+
+if(nkc%2==1){
+NoKnockbackBtn.style.backgroundColor="rgb(109 24 137)"
+NoKnockbackBtn.children[0].style.right = "10%"
+NoKnockbackBtn.children[0].style.backgroundColor = "black"   
+
+nkr = setInterval(function(){try {
+game.getTankPhysics().body.addWorldForce_f5o1bj$ = () =>{}
+ 
+} catch (error) {
+ 
+}
+                     },1500) 
+
+}
+
+if(nkc%2==0){
+NoKnockbackBtn.style.backgroundColor="#8080803b"
+NoKnockbackBtn.children[0].style.right = "63%"
+NoKnockbackBtn.children[0].style.backgroundColor = "white"   
+clearInterval(nkr)
+game.getTankPhysics().body.addWorldForce_f5o1bj$ = function(t,e,n){var o=n*e.x,i=n*e.y,r=n*e.z;this.forceAccum_0.x=this.forceAccum_0.x+o,this.forceAccum_0.y=this.forceAccum_0.y+i,this.forceAccum_0.z=this.forceAccum_0.z+r;var s=this.state.position,a=t.x-s.x,c=t.y-s.y,u=t.z-s.z;this.torqueAccum_0.x=this.torqueAccum_0.x+(c*r-u*i),this.torqueAccum_0.y=this.torqueAccum_0.y+(u*o-a*r),this.torqueAccum_0.z=this.torqueAccum_0.z+(a*i-c*o)}
+
+}
+
+
+    
+})
+
+
+
+IgnoreTexturesBtn.addEventListener("click",function(){
+itc +=1
+
+
+if(itc%2==1){
+IgnoreTexturesBtn.style.backgroundColor="rgb(109 24 137)"
+IgnoreTexturesBtn.children[0].style.right = "10%"
+IgnoreTexturesBtn.children[0].style.backgroundColor = "black"   
+itr = setInterval(function(){
+try {
+game.getTankPhysics().body.scene.getBodyContacts_9pl3r9$  = function(t,e){} 
+clearInterval(itre)
+} catch (error) {
+ 
+}
+},1500)
+}
+
+if(itc%2==0){
+IgnoreTexturesBtn.style.backgroundColor="#8080803b"
+IgnoreTexturesBtn.children[0].style.right = "63%"
+IgnoreTexturesBtn.children[0].style.backgroundColor = "white" 
+clearInterval(itr)
+itre = setInterval(function(){
+try {
+game.getTankPhysics().body.scene.getBodyContacts_9pl3r9$  = function(t,e){return this.$delegate_jkpsdr$_0.getBodyContacts_9pl3r9$(t,e)}
+ 
+} catch (error) {
+ 
+}
+},1500)
+}
+
+
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+whiteIcon = document.createElement("div")
+
+
+
+whiteIcon.style.width = "100%"
+whiteIcon.style.height = "100%"
+whiteIcon.style.background = "white"
+whiteIcon.style.borderRadius = "20px"
+
+
+
+
+page1.appendChild(whiteIcon)
+
+
+page1.addEventListener("click",page1func)
+page2.addEventListener("click",page2func)
+page3.addEventListener("click",page3func)
+page4.addEventListener("click",page4func)
+
+
+
+
+
+
+function page1func(){
+hackWindow.innerHTML = ""
+hackWindow.appendChild(title)
+hackWindow.appendChild(notiltButton)
+hackWindow.appendChild(autoclickerButton)
+hackWindow.appendChild(autoHealButton)
+hackWindow.appendChild(PlayerTPButton)
+hackWindow.appendChild(SpeedhackButton)
+hackWindow.appendChild(SimpleTPButton)
+hackWindow.appendChild(rapidUpdateButton)
+
+
+
+
+
+notiltButton.appendChild(innerCircle1)
+autoclickerButton.appendChild(innerCircle2)
+autoHealButton.appendChild(innerCircle3)
+PlayerTPButton.appendChild(innerCircle4)
+SpeedhackButton.appendChild(innerCircle5)
+SimpleTPButton.appendChild(innerCircle6)
+rapidUpdateButton.appendChild(innerCircle7)
+
+
+
+    
+hackWindow.appendChild(Notilt)
+hackWindow.appendChild(Autoclicker)
+hackWindow.appendChild(Autoheal)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(Speedhack)
+hackWindow.appendChild(SimpleTP)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(rapidUpdate)
+
+
+page1.appendChild(whiteIcon)
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+
+    
+}
+
+
+
+
+
+
+function page2func(){
+hackWindow.innerHTML = ""
+hackWindow.appendChild(title)
+    
+
+
+    
+hackWindow.appendChild(airwalkBtn)
+hackWindow.appendChild(randomBtn)
+hackWindow.appendChild(GoldTPBtn)
+hackWindow.appendChild(FlagTPBtn)
+hackWindow.appendChild(MineHackBtn)
+hackWindow.appendChild(NoKnockbackBtn)
+hackWindow.appendChild(IgnoreTexturesBtn)
+
+    
+hackWindow.appendChild(Airwalk)
+hackWindow.appendChild(GoldTP)
+hackWindow.appendChild(flagTP)
+hackWindow.appendChild(randomTP)
+hackWindow.appendChild(Minehack)
+hackWindow.appendChild(NoKnockback)
+hackWindow.appendChild(IgnoreTextures)    
+
+
+airwalkBtn.appendChild(innerCircle8)
+randomBtn.appendChild(innerCircle9)
+FlagTPBtn.appendChild(innerCircle10)
+GoldTPBtn.appendChild(innerCircle11)
+MineHackBtn.appendChild(innerCircle12)
+NoKnockbackBtn.appendChild(innerCircle13)
+IgnoreTexturesBtn.appendChild(innerCircle14)
+
+
+
+
+    
+page2.appendChild(whiteIcon)
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+
+}    
+
+
+
+
+
+
+
+
+miscTitle = document.createElement("span")
+miscTitle.innerText = "MISC"
+Object.assign(miscTitle.style,title_style)
+
+page3.addEventListener("click",page3func)
+miscTitle.style.padding= '24px 30% 0px 35%'
+
+
+freezeTanksBtn = document.createElement("div")
+noStunBtn = document.createElement("div")
+declusterBtn = document.createElement("div")
+playerMinesBtn = document.createElement("div")
+ohkBtn = document.createElement("div")
+aimbotBtn = document.createElement("div")
+tprBtn = document.createElement("div")
+
+
+freezeTanks = document.createElement("span")
+noStun = document.createElement("span")
+decluster =  document.createElement("span")
+playerMines =  document.createElement("span")
+ohk = document.createElement("span")
+aimbot =  document.createElement("span")
+tpr =  document.createElement("span")
+
+
+
+freezeTanks.innerText = "Freeze Tanks:"
+noStun.innerText = "No Stun:"
+decluster.innerText = "Mine Decluster [M]:"
+playerMines.innerText = "Player Mines [K]:"
+ohk.innerText = "One Hit Kill:"
+aimbot.innerText = "Aimbot:"
+tpr.innerText = "TP Rockets:"
+
+
+
+applyLabels(freezeTanks,noStun,decluster,playerMines,aimbot,ohk,tpr)
+applyButtons(freezeTanksBtn,noStunBtn,declusterBtn,playerMinesBtn,aimbotBtn,ohkBtn,tprBtn)
+
+
+innerCircle15  = document.createElement("div")
+innerCircle16  = document.createElement("div")
+innerCircle17  = document.createElement("div")
+innerCircle18  = document.createElement("div")
+innerCircle19  = document.createElement("div")
+innerCircle20  = document.createElement("div")
+innerCircle21  = document.createElement("div")
+
+
+
+
+
+Object.assign(innerCircle15.style,innerCircle_style)
+Object.assign(innerCircle16.style,innerCircle_style)
+Object.assign(innerCircle17.style,innerCircle_style)
+Object.assign(innerCircle18.style,innerCircle_style)
+Object.assign(innerCircle19.style,innerCircle_style)
+Object.assign(innerCircle20.style,innerCircle_style)
+Object.assign(innerCircle21.style,innerCircle_style)
+
+
+freezeTanksBtn.appendChild(innerCircle15)
+noStunBtn.appendChild(innerCircle16)
+playerMinesBtn.appendChild(innerCircle17)
+declusterBtn.appendChild(innerCircle18)
+ohkBtn.appendChild(innerCircle19)
+aimbotBtn.appendChild(innerCircle20)
+tprBtn.appendChild(innerCircle21)
+
+
+
+
+
+
+function page3func(){
+hackWindow.innerHTML = ""
+hackWindow.appendChild(miscTitle)
+    
+hackWindow.appendChild(noStunBtn)
+hackWindow.appendChild(tprBtn)
+hackWindow.appendChild(aimbotBtn)
+hackWindow.appendChild(declusterBtn)
+hackWindow.appendChild(playerMinesBtn)
+hackWindow.appendChild(ohkBtn)
+hackWindow.appendChild(freezeTanksBtn)
+
+
+hackWindow.appendChild(freezeTanks)
+hackWindow.appendChild(tpr)
+hackWindow.appendChild(aimbot)
+hackWindow.appendChild(playerMines)
+hackWindow.appendChild(ohk)
+hackWindow.appendChild(noStun)
+hackWindow.appendChild(decluster)
+    
+    
+page3.appendChild(whiteIcon)
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+
+}    
+
+
+ffc = 0
+nsc = 0
+mdc = 0
+pmc = 0
+amc = 0
+ohkc = 0
+tprc = 0
+
+
+
+//event listeners
+
+freezeTanksBtn.addEventListener("click",function(){
+ffc +=1
+
+
+if(ffc%2==1){
+freezeTanksBtn.style.backgroundColor="rgb(109 24 137)"
+freezeTanksBtn.children[0].style.right = "10%"
+freezeTanksBtn.children[0].style.backgroundColor = "black"   
+
+ftr = setInterval(function(){
+try {
+for(let i=0;i<game.getPlayers().list_0.array.length;i++){
+if(game.getPlayers().list_0.array[i].components_0.array[4].userId.low_!=game.getTank().components_0.array[4].userId.low_)
+{
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.frozen=true
+
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.movable=false
+
+    
+}
+
+    
+}
+
+
+ 
+} catch (error) {
+ 
+}
+    
+},1000)
+
+}
+
+if(ffc%2==0){
+freezeTanksBtn.style.backgroundColor="#8080803b"
+freezeTanksBtn.children[0].style.right = "63%"
+freezeTanksBtn.children[0].style.backgroundColor = "white"   
+clearInterval(ftr)
+
+
+try {
+for(let i=0;i<game.getPlayers().list_0.array.length;i++){
+
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.frozen=false
+
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.movable=true
+
+    
+}
+ 
+} catch (error) {
+ 
+}
+
+
+
+    
+}
+
+
+    
+})
+
+
+
+
+
+
+noStunBtn.addEventListener("click",function(){
+nsc +=1
+
+
+if(nsc%2==1){
+noStunBtn.style.backgroundColor="rgb(109 24 137)"
+noStunBtn.children[0].style.right = "10%"
+noStunBtn.children[0].style.backgroundColor = "black"   
+nsr = setInterval(function(){
+try {
+game.getTank().components_0.array[game.getTank().components_0.array.length-1].gameObject_0.gameClass.models_0.array_hd7ov6$_0[1].stun = function(){}
+    
+} catch (error) {
+    
+}                            },1000)
+}
+
+if(nsc%2==0){
+noStunBtn.style.backgroundColor="#8080803b"
+noStunBtn.children[0].style.right = "63%"
+noStunBtn.children[0].style.backgroundColor = "white"   
+
+
+clearInterval(nsr)
+try {
+game.getTank().components_0.array[game.getTank().components_0.array.length-1].gameObject_0.gameClass.models_0.array_hd7ov6$_0[1].stun = function(){var t;null!=(t=this.getData_lmshww$(w(N)))&&t.send_il80ix$(_u.EnableStunEffect)} 
+} catch (error) {
+ 
+}
+
+    
+}
+
+
+    
+})
+
+
+
+declusterBtn.addEventListener("click",function(){
+mdc +=1
+
+
+if(mdc%2==1){
+declusterBtn.style.backgroundColor="rgb(109 24 137)"
+declusterBtn.children[0].style.right = "10%"
+declusterBtn.children[0].style.backgroundColor = "black"   
+
+
+document.addEventListener("keydown",window.dcm = function(e){
+
+if(e.key == "m"){
+
+mineDecluster()
+    
+}
+
+
+
+    
+})
+
+    
+}
+
+if(mdc%2==0){
+declusterBtn.style.backgroundColor="#8080803b"
+declusterBtn.children[0].style.right = "63%"
+declusterBtn.children[0].style.backgroundColor = "white"   
+
+
+document.removeEventListener("keydown",window.dcm)
+
+    
+}
+
+
+    
+})
+
+
+
+playerMinesBtn.addEventListener("click",function(){
+pmc +=1
+
+
+if(pmc%2==1){
+playerMinesBtn.style.backgroundColor="rgb(109 24 137)"
+playerMinesBtn.children[0].style.right = "10%"
+playerMinesBtn.children[0].style.backgroundColor = "black"   
+
+
+document.addEventListener("keydown",window.rmm = function(e){
+
+if(e.key == "k"){
+
+removeMyMines()    
+}
+
+
+
+    
+})
+
+    
+}
+
+if(pmc%2==0){
+playerMinesBtn.style.backgroundColor="#8080803b"
+playerMinesBtn.children[0].style.right = "63%"
+playerMinesBtn.children[0].style.backgroundColor = "white"   
+
+
+document.removeEventListener("keydown",window.rmm)
+
+    
+}
+
+
+    
+})
+
+
+
+
+
+
+
+
+aimbotBtn.addEventListener("click",function(){
+amc +=1
+
+
+if(amc%2==1){
+aimbotBtn.style.backgroundColor="rgb(109 24 137)"
+aimbotBtn.children[0].style.right = "10%"
+aimbotBtn.children[0].style.backgroundColor = "black"   
+aimb = setInterval(function(){
+try {
+game.getStriker().lockTarget_gcez93$ = function (t, e, n)
+    {
+        if (e != null)
+        {
+            targetId = e;
+        }
+        
+        
+        
+        this.lockTarget_gcez93$$default(t, e);
+        return true;
+    } 
+} catch (error) {
+ 
+}
+},1500)
+    
+}
+
+if(amc%2==0){
+aimbotBtn.style.backgroundColor="#8080803b"
+aimbotBtn.children[0].style.right = "63%"
+aimbotBtn.children[0].style.backgroundColor = "white"   
+
+ try {
+clearInterval(aimb)
+ 
+game.getStriker().lockTarget_gcez93$ =function(t,e,n){return void 0===e&&(e=null),n?n(t,e):this.lockTarget_gcez93$$default(t,e)}
+  
+ } catch (error) {
+  
+ }
+    
+}
+
+
+    
+})
+
+
+
+
+
+
+ohkBtn.addEventListener("click",function(){
+ohkc +=1
+
+
+if(ohkc%2==1){
+ohkBtn.style.backgroundColor="rgb(109 24 137)"
+ohkBtn.children[0].style.right = "10%"
+ohkBtn.children[0].style.backgroundColor = "black"   
+window.ohkr = setInterval(hacks.oneHitKill,100)
+
+    
+}
+
+if(ohkc%2==0){
+ohkBtn.style.backgroundColor="#8080803b"
+ohkBtn.children[0].style.right = "63%"
+ohkBtn.children[0].style.backgroundColor = "white"   
+clearInterval(window.ohkr)
+
+    
+}
+
+
+    
+})
+
+
+
+
+
+tprBtn.addEventListener("click",function(){
+tprc +=1
+
+
+if(tprc%2==1){
+tprBtn.style.backgroundColor="rgb(109 24 137)"
+tprBtn.children[0].style.right = "10%"
+tprBtn.children[0].style.backgroundColor = "black"   
+
+    
+}
+
+if(tprc%2==0){
+tprBtn.style.backgroundColor="#8080803b"
+tprBtn.children[0].style.right = "63%"
+tprBtn.children[0].style.backgroundColor = "white"   
+
+    
+}
+
+
+    
+})
+
+
+
+/*configTitle = document.createElement("span")
+configTitle.innerText = "CONFIG"
+Object.assign(configTitle.style, title_style)
+
+tps = document.createElement("span")
+
+plusButton = document.createElement("button")
+minusButton = document.createElement("button")
+
+tps.innerText = TPspeed
+
+tps.style.position = "absolute"
+tps.style.color = "white"
+tps.style.bottom = "76%"
+tps.style.right = "46%"
+tps.style.fontSize = "18px"
+
+
+pmb_style = {
+    width: '35px',
+    height: '25px',
+    position: 'absolute',
+    borderRadius: '100px',
+   
+}
+
+Object.assign(plusButton.style, pmb_style)
+Object.assign(minusButton.style, pmb_style)
+
+minusButton.style.backgroundColor = "red"
+plusButton.style.backgroundColor = "green"
+
+minusButton.style.bottom = "76%"
+plusButton.style.bottom = "76%"
+
+
+minusButton.style.left = "14%"
+plusButton.style.right = "14%"
+
+//hackWindow.appendChild(plusButton)
+//hackWindow.appendChild(minusButton)
+
+pSign = document.createElement("span")
+mSign = document.createElement("span")
+
+pSign.innerText = "+"
+mSign.innerText = "-"
+
+plusButton.appendChild(pSign)
+minusButton.appendChild(mSign)
+
+plusButton.addEventListener("click", function() {
+
+    tps.innerText = parseInt(tps.innerText) + 20
+    TPspeed+=20
+
+})
+minusButton.addEventListener("click", function() {
+
+    tps.innerText = parseInt(tps.innerText) - 20
+    TPspeed-=20
+
+})
+*/
+function page4func() {
+    hackWindow.innerHTML = ""
+    hackWindow.appendChild(miscTitle)
+
+    page4.appendChild(whiteIcon)
+
+    /*hackWindow.appendChild(plusButton)
+    hackWindow.appendChild(minusButton)
+    hackWindow.appendChild(tps)
+
+    hackWindow.appendChild(clickPlusButton)
+    hackWindow.appendChild(clickMinusButton)
+    hackWindow.appendChild(cps)*/
+    hackWindow.appendChild(noLaser)
+    hackWindow.appendChild(noLaserBtn)
+    hackWindow.appendChild(DeathSpawn)
+    hackWindow.appendChild(DeathSpawnBtn)
+    hackWindow.appendChild(accText)
+    hackWindow.appendChild(tpText)
+    hackWindow.appendChild(clickText)
+    hackWindow.appendChild(slider2)
+    hackWindow.appendChild(slider3)
+    hackWindow.appendChild(slider4)
+
+    hackWindow.appendChild(fastClickerBtn)
+    hackWindow.appendChild(fastClicker)
+
+    hackWindow.appendChild(targetModeBtn)
+    hackWindow.appendChild(targetMode)
+    hackWindow.appendChild(slider)
+    hackWindow.appendChild(speedText)
+    
+    hackWindow.appendChild(page1)
+    hackWindow.appendChild(page2)
+    hackWindow.appendChild(page3)
+    hackWindow.appendChild(page4)
+
+}
+
+
+/*clickSpeed = 30
+cps = document.createElement("span")
+cps.innerText = clickSpeed
+
+clickPlusButton = document.createElement("button")
+clickMinusButton = document.createElement("button")
+
+cps.innerText = clickSpeed
+
+cps.style.position = "absolute"
+cps.style.color = "white"
+cps.style.bottom = "62%"
+cps.style.right = "46%"
+cps.style.fontSize = "18px"
+
+
+
+Object.assign(clickPlusButton.style, pmb_style)
+Object.assign(clickMinusButton.style, pmb_style)
+
+clickMinusButton.style.backgroundColor = "red"
+clickPlusButton.style.backgroundColor = "green"
+
+clickMinusButton.style.bottom = "62%"
+clickPlusButton.style.bottom = "62%"
+
+
+clickMinusButton.style.left = "14%"
+clickPlusButton.style.right = "14%"
+
+//hackWindow.appendChild(plusButton)
+//hackWindow.appendChild(minusButton)
+
+cpSign = document.createElement("span")
+cmSign = document.createElement("span")
+
+cpSign.innerText = "+"
+cmSign.innerText = "-"
+
+clickPlusButton.appendChild(cpSign)
+clickMinusButton.appendChild(cmSign)
+
+clickPlusButton.addEventListener("click", function() {
+
+    cps.innerText = parseInt(cps.innerText) + 1
+    clickSpeed+=1
+
+})
+clickMinusButton.addEventListener("click", function() {
+
+    cps.innerText = parseInt(cps.innerText) - 1
+    clickSpeed-=1
+
+})
+
+*/
+
+
+fastClickerBtn = document.createElement("div")
+targetModeBtn = document.createElement("div")
+
+
+
+fastClicker = document.createElement("span")
+targetMode = document.createElement("span")
+
+
+
+
+
+Object.assign(fastClickerBtn.style,checkboxUnticked_style)
+Object.assign(targetModeBtn.style,checkboxUnticked_style)
+
+
+
+
+
+
+
+
+//fastClickerBtn.style.bottom = "35.5%"
+fastClickerBtn.style.marginLeft = "70%"
+targetModeBtn.style.marginLeft = "70%"
+//targetModeBtn.style.bottom = "46.7%"
+
+
+
+//targetMode.style.bottom = "46%"
+fastClicker.style.fontSize = "15px"
+fastClicker.style.padding = "65.8% 0px 0px 25px"
+fastClicker.style.position = "absolute"
+
+//fastClicker.style.bottom = "35%"
+targetMode.style.fontSize = "15px"
+targetMode.style.padding = "65.8% 0px 0px 25px"
+targetMode.style.position = "absolute"
+
+fastClicker.innerText = "Super Clicker:"
+targetMode.innerText = "Target Mode:"
+
+innerCircle22 = document.createElement("div")
+innerCircle23 = document.createElement("div")
+
+
+Object.assign(innerCircle22.style,innerCircle_style)
+Object.assign(innerCircle23.style,innerCircle_style)
+
+
+fastClickerBtn.appendChild(innerCircle22)
+targetModeBtn.appendChild(innerCircle23)
+
+
+//
+slider = document.createElement("input")
+
+slider.type = "range"
+
+
+slider.step = 100
+
+slider.min = 0
+slider.max = 10000
+slider.style.position = "absolute"
+slider.style.bottom = "23%"
+slider.style.marginLeft = "43%"
+
+
+Object.assign(slider.style,{position: 'absolute',
+bottom: '23%',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(151, 255, 118) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+
+speedText = document.createElement("span")
+setInterval(function(){
+try {
+speedText.innerText = `Speed[${slider.value}]:`    
+} catch (error) {
+    
+}
+},100)
+
+Object.assign(speedText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '23%'})
+
+
+
+
+
+twc = 0
+swc = 0
+
+
+targetModeBtn.addEventListener("click",function(){
+twc +=1
+
+
+if(twc%2==1){
+targetModeBtn.style.backgroundColor="rgb(109 24 137)"
+targetModeBtn.children[0].style.right = "10%"
+targetModeBtn.children[0].style.backgroundColor = "black"   
+isTarget = true
+}
+
+if(twc%2==0){
+targetModeBtn.style.backgroundColor="#8080803b"
+targetModeBtn.children[0].style.right = "63%"
+targetModeBtn.children[0].style.backgroundColor = "white"   
+isTarget = false
+}
+
+
+    
+})
+
+
+
+
+
+fastClickerBtn.addEventListener("click",function(){
+swc +=1
+
+
+if(swc%2==1){
+fastClickerBtn.style.backgroundColor="rgb(109 24 137)"
+fastClickerBtn.children[0].style.right = "10%"
+fastClickerBtn.children[0].style.backgroundColor = "black"   
+Superclicker()
+}
+
+if(swc%2==0){
+fastClickerBtn.style.backgroundColor="#8080803b"
+fastClickerBtn.children[0].style.right = "63%"
+fastClickerBtn.children[0].style.backgroundColor = "white"   
+
+
+cancelAnimationFrame(ck)
+    
+}
+
+
+    
+})
+
+
+
+
+Superclicker = function(){ 
+try {
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[mines]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[repairs]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DD]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DA]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[NITRO]._value_0._value_0.onUserActivatedSupply() 
+
+ck = requestAnimationFrame(Superclicker)
+    
+} catch (error) {
+    
+} 
+
+
+}
+
+
+//
+
+
+
+DeathSpawnBtn = document.createElement("div")
+noLaserBtn = document.createElement("div")
+
+DeathSpawn = document.createElement("span")
+noLaser = document.createElement("span")
+
+
+Object.assign(DeathSpawnBtn.style,checkboxUnticked_style)
+Object.assign(noLaserBtn.style,checkboxUnticked_style)
+
+
+
+targetModeBtn.style.bottom = "80%"
+targetMode.style.bottom = "80%"
+fastClickerBtn.style.bottom = "71.9%"
+fastClicker.style.bottom = "71.9%"
+
+
+
+DeathSpawnBtn.style.marginLeft = "70%"
+noLaserBtn.style.marginLeft = "70%"
+
+
+DeathSpawnBtn.style.bottom = "64%"
+noLaserBtn.style.bottom = "56%"
+
+
+
+DeathSpawn.innerText = "Death Spawn:"
+noLaser.innerText = "No Laser:"
+
+DeathSpawn.style.bottom = "64%"
+noLaser.style.bottom = "56%"
+
+
+
+Object.assign(DeathSpawn.style,{fontSize: '15px',
+padding: '65.8% 0px 0px 25px',
+position: 'absolute',
+})
+
+Object.assign(noLaser.style,{fontSize: '15px',
+padding: '65.8% 0px 0px 25px',
+position: 'absolute',
+})
+
+
+
+
+
+
+
+
+innerCircle24 = document.createElement("div")
+innerCircle25 = document.createElement("div")
+
+
+Object.assign(innerCircle24.style,innerCircle_style)
+Object.assign(innerCircle25.style,innerCircle_style)
+
+DeathSpawnBtn.appendChild(innerCircle24)
+noLaserBtn.appendChild(innerCircle25)
+
+
+slider2= document.createElement("input")
+
+slider2.type = "range"
+
+
+slider2.step = 100
+
+slider2.min = 0
+slider2.max = 10000
+slider2.style.position = "absolute"
+slider2.style.marginLeft = "43%"
+slider2.style.bottom  = "48.3%"
+
+
+Object.assign(slider2.style,{position: 'absolute',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(167 25 45) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+slider3= document.createElement("input")
+
+slider3.type = "range"
+
+
+slider3.step = 10
+
+slider3.min = 0
+slider3.max = 500
+slider3.style.position = "absolute"
+slider3.style.marginLeft = "43%"
+slider3.style.bottom = "39%"
+
+
+Object.assign(slider3.style,{position: 'absolute',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(96 175 221) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+slider4= document.createElement("input")
+
+slider4.type = "range"
+
+
+slider4.step = 1
+
+slider4.min = 0
+slider4.max = 150
+slider4.style.position = "absolute"
+slider4.style.marginLeft = "30%"
+slider4.style.bottom = "30%"
+
+
+Object.assign(slider4.style,{position: 'absolute',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(211 198 38) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+
+
+//text
+
+
+accText = document.createElement("span")
+setInterval(function(){
+try {
+accText.innerText = `Accel [${slider2.value}]:`    
+} catch (error) {
+    
+}
+},100)
+
+Object.assign(accText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '48.3%'})
+
+
+
+
+tpText = document.createElement("span")
+setInterval(function(){
+try {
+tpText.innerText = `Teleport [${slider3.value}]:`    
+TPspeed = slider3.value
+} catch (error) {
+    
+}
+},100)
+
+
+Object.assign(tpText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '39%'})
+
+
+clickText = document.createElement("span")
+setInterval(function(){
+try {
+clickText.innerText = `Clicker [${slider4.value}]:`    
+} catch (error) {
+    
+}
+},100)
+
+
+Object.assign(clickText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '30%'})
+
+
+
+slider.style.bottom = "21%"
+speedText.style.bottom = "21.3%"
+
+dsc = 0
+nlc = 0
+DeathSpawnBtn.addEventListener("click",function(){
+dsc +=1
+
+
+if(dsc%2==1){
+DeathSpawnBtn.style.backgroundColor="rgb(109 24 137)"
+DeathSpawnBtn.children[0].style.right = "10%"
+DeathSpawnBtn.children[0].style.backgroundColor = "black"   
+dsr = setInterval(function(){
+try {
+
+game.getTankPhysics().onSpawn_0 = function(t){}
+
+
+    
+} catch (error) {
+    
+}
+
+
+
+    
+},1000)
+}
+
+if(dsc%2==0){
+DeathSpawnBtn.style.backgroundColor="#8080803b"
+DeathSpawnBtn.children[0].style.right = "63%"
+DeathSpawnBtn.children[0].style.backgroundColor = "white"   
+try {
+clearInterval(dsr)
+game.getTankPhysics().onSpawn_0 = function(t){var e=this.body.state;e.position.init_ry1qwf$(t.position),e.orientation.fromEulerAngles_ry1qwf$(t.rotation),e.velocity.init_y2kzbl$(),e.angularVelocity.init_y2kzbl$();var n=this.body;n.saveState(),n.calcDerivedData(),this.interpolatePhysicsState_mx4ult$(0)}
+} catch (error) {
+ 
+}
+}
+
+
+    
+})
+
+
+
+
+
+
+
+noLaserBtn.addEventListener("click",function(){
+nlc +=1
+
+
+if(nlc%2==1){
+noLaserBtn.style.backgroundColor="rgb(109 24 137)"
+noLaserBtn.children[0].style.right = "10%"
+noLaserBtn.children[0].style.backgroundColor = "black"   
+nlr = setInterval(hacks.noLaser,20)
+}
+
+if(nlc%2==0){
+noLaserBtn.style.backgroundColor="#8080803b"
+noLaserBtn.children[0].style.right = "63%"
+noLaserBtn.children[0].style.backgroundColor = "white"   
+try {
+clearInterval(nlr)
+
+} catch (error) {
+ 
+}
+}
+
+
+    
+})
+
+
+
+
+
+draggable(hackWindow)
