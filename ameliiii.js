@@ -91,7 +91,7 @@ return root._reactRootContainer._internalRoot.current.memoizedState.element.type
 
 
 commons.getRandom = function(min,max){
-return Math.floor(Math.random() * (max - min + 1) + min)
+return Math.floor(Math.random() * (max - min + 0,1) + min)
   
   
 }
