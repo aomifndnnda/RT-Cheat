@@ -677,6 +677,15 @@ setTimeout(sapm,1500)
 }
 }
 
+ if (KeyPressing.isKeyPressed(84 /*key: T*/) && Utils.isNotOpenChat())
+    {
+                for (let i = 0; i < strikerData.shellCache.length; i++)
+        {
+            strikerData.shellCache.at(i).components_0.array.at(1).position.x = targetBody.state.position.x;
+            strikerData.shellCache.at(i).components_0.array.at(1).position.y = targetBody.state.position.y;
+            strikerData.shellCache.at(i).components_0.array.at(1).position.z = targetBody.state.position.z;
+    }}
+
 hacks.goldTP = function(){
 try {
 if(commons.getChatState()==null){
