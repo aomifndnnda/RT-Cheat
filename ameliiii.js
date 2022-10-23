@@ -843,7 +843,7 @@ hackWindow_style={
     height:"500px",
     width:"250px",
     position:"absolute",
-    opacity: "0.10",
+    opacity: "0.77",
     left:"50%",
     right:"50%",
     transform:"translate(-50%,-50%)",
