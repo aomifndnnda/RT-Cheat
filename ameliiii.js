@@ -285,16 +285,16 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
 
         
             
-            game.getTankPhysics().body.state.position.x += TPspeed * Math.sin(-game.getCamera().direction);
-            game.getTankPhysics().body.state.position.y += TPspeed * Math.cos(-game.getCamera().direction);
+    
+            game.getTankPhysics().body.state.position.y +=100
         
     }
 
     if (KeyPressing.isKeyPressed(83 /*key: S*/) && commons.getChatState()==null)
     {
         
-        game.getTankPhysics().body.state.position.x -= TPspeed * Math.sin(-game.getCamera().direction);
-            game.getTankPhysics().body.state.position.y -= TPspeed * Math.cos(-game.getCamera().direction);
+    
+            game.getTankPhysics().body.state.position.y -=100
     }
 
     if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null)
@@ -304,8 +304,8 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
        
            
 
-            game.getTankPhysics().body.state.position.x -= TPspeed * Math.sin(-(game.getCamera().direction - Math.PI / 2));
-            game.getTankPhysics().body.state.position.y -= TPspeed * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.x -=100
+            
         
     }
 
@@ -314,27 +314,27 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
         
 
        
-            game.getTankPhysics().body.state.position.x +=TPspeed * Math.sin(-(game.getCamera().direction - Math.PI / 2));
-            game.getTankPhysics().body.state.position.y += TPspeed * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.x +=100
+ 
         
     }
    
-   if (KeyPressing.isKeyPressed(74 /*key: J*/) && commons.getChatState()==null)
+   if (KeyPressing.isKeyPressed(103 /*key: Numpad7*/) && commons.getChatState()==null)
     {
         
 
        
-            game.getTankPhysics().body.state.position.z+=80
+            game.getTankPhysics().body.state.position.z+=50
         
     }
 
    
-   if (KeyPressing.isKeyPressed(70 /*key: F*/) && commons.getChatState()==null)
+   if (KeyPressing.isKeyPressed(104 /*key: Numpad8*/) && commons.getChatState()==null)
     {
         
 
        
-            game.getTankPhysics().body.state.position.z-=80
+            game.getTankPhysics().body.state.position.z-=50
         
     }
    
