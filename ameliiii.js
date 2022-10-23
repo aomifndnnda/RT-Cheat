@@ -408,7 +408,7 @@ game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q
 hacks.rapidUpdate = function(){
                       
 try {
-   game.getTank().components_0.array[37].sendState_0(game.getTankPhysics().getInterpolatedBodyState())    
+   game.getTank().components_0.array[38].sendState_0(game.getTankPhysics().getInterpolatedBodyState())    
 } catch (error) {
      
  }}
