@@ -724,8 +724,12 @@ game.getWorld().physicsScene_0.gravity.z  = 0
 function nt(){try {
 game.getTankPhysics().body.state.orientation.x = 0;
     game.getTankPhysics().body.state.orientation.y = 0;
-   game.getTankPhysics().body.state.angularVelocity.y= 0
-    game.getTankPhysics().body.state.angularVelocity.x = 0; 
+  game.getTankPhysics().body.state.orientation.z = 0;
+   physicsComponent.body.state.angularVelocity.x = 0;
+ 
+            physicsComponent.body.state.angularVelocity.y = 0;
+ 
+            physicsComponent.body.state.angularVelocity.z = 0;
 } catch (error) {
  
 }}
@@ -812,7 +816,7 @@ game.getWorld().triggers_0.triggers_0.array[key].removeMine_0()
 
 
 WpressCount = 0
-document.addEventListener('keydown', function (event) { if (event.key === 'F10'){
+document.addEventListener('keydown', function (event) { if (event.key === '0'){
 WpressCount ++
 if(WpressCount%2==1){
 root.appendChild(hackWindow)
@@ -839,7 +843,7 @@ hackWindow_style={
     height:"500px",
     width:"250px",
     position:"absolute",
-    opacity: "0.55",
+    opacity: "0.10",
     left:"50%",
     right:"50%",
     transform:"translate(-50%,-50%)",
@@ -850,7 +854,7 @@ hackWindow_style={
     borderRight:"1px solid black",
     borderWidth:"3px"
 }
-hackWindow.style.outline = "1px solid red"
+hackWindow.style.outline = "4px solid black"
 //Object.assign():
 Object.assign(hackWindow.style,hackWindow_style);
 root.appendChild(hackWindow)
@@ -883,7 +887,7 @@ function draggable(el) {
 
 
 title = document.createElement("span")
-title.innerText = "HACKS"
+title.innerText = "xeon"
 hackWindow.appendChild(title)
 
 title_style = {
@@ -1038,7 +1042,7 @@ Notilt.innerText = "Notilt:"
 Autoclicker.innerText = "Autoclicker:"
 Autoheal.innerText = "Autoheal:"
 PlayerTP.innerText = "Player TP [V]:"
-SimpleTP.innerText = "Simple TP:"
+SimpleTP.innerText = "FlyHack:"
 rapidUpdate.innerText = "Rapid Update:"
 Speedhack.innerText = "Speedhack:"
 
@@ -1170,7 +1174,7 @@ page4.style.marginLeft = "76%"
 //page2
 
 
-hackWindow.style.backdropFilter = "blur(1.7px)"
+hackWindow.style.backdropFilter = "blur(3.1px)"
 
 
 
@@ -1896,7 +1900,7 @@ hackWindow.appendChild(page4)
 
 
 miscTitle = document.createElement("span")
-miscTitle.innerText = "MISC"
+miscTitle.innerText = "xeon"
 Object.assign(miscTitle.style,title_style)
 
 page3.addEventListener("click",page3func)
