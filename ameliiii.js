@@ -995,7 +995,7 @@ function draggable(el) {
 
 
 title = document.createElement("span")
-title.innerText = "xeon hack v2"
+title.innerText = "xeon hack"
 hackWindow.appendChild(title)
 
 title_style = {
@@ -2008,7 +2008,7 @@ hackWindow.appendChild(page4)
 
 
 miscTitle = document.createElement("span")
-miscTitle.innerText = "xeon hack v2"
+miscTitle.innerText = "xeon hack"
 Object.assign(miscTitle.style,title_style)
 
 page3.addEventListener("click",page3func)
