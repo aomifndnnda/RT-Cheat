@@ -398,14 +398,14 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
         
     }
 
-    if (KeyPressing.isKeyPressed(83 /*key: S*/) && commons.getChatState()==null)&& game.getTankPhysics().body.state.position.y != game.getMapBoundary().maxY )
+    if (KeyPressing.isKeyPressed(83 /*key: S*/) && commons.getChatState()==null) && game.getTankPhysics().body.state.position.y != game.getMapBoundary().maxY )
     {
         
     
             game.getTankPhysics().body.state.position.y -=100;
     }
 
-    if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null)&& game.getTankPhysics().body.state.position.x != game.getMapBoundary().maxX )
+    if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null) && game.getTankPhysics().body.state.position.x != game.getMapBoundary().maxX )
     {
         
 
@@ -417,7 +417,7 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
         
     }
 
-    if (KeyPressing.isKeyPressed(68 /*key: D*/) && commons.getChatState()==null)&& game.getTankPhysics().body.state.position.x != game.getMapBoundary().maxX )
+    if (KeyPressing.isKeyPressed(68 /*key: D*/) && commons.getChatState()==null) && game.getTankPhysics().body.state.position.x != game.getMapBoundary().maxX )
     {
         
 
