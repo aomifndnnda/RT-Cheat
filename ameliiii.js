@@ -394,7 +394,7 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
         
             
     
-            game.getTankPhysics().body.state.position.y +=100
+            game.getTankPhysics().body.state.position.y +=100;
         
     }
 
