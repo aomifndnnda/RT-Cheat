@@ -1,5 +1,113 @@
 TPspeed = 100
 
+class Utils
+{
+    getRootElement      = null; // args: void
+    getRootObject       = null; // args: void
+    getRenderElement    = null; // args: void
+    getRandomArbitrary  = null; // args: void
+
+    isNotOpenChat       = null; // args: void
+    isNotKillZone       = null; // args: 1 - world, 2 - position {x, y, z}
+    isGameReady         = null; // args: void
+    isPlayerEnemy       = null; // args: 1 - localPlayer, 2 - player
+
+    getPlayers          = null; // args: 1 - world, 2 - localPlayer, 3 - isOnlyEnemy (= false)
+    getPlayerById       = null; // args: 1 - world, 2 - localPlayer, 3 - playerId
+    getPlayerName       = null; // args: 1 - player
+
+    getBodyById         = null; // args: 1 - world, 2 - localPlayer, 3 - playerId
+    getPlayerBody       = null; // args: 1 - player
+
+    saveStates          = null; // args: void
+    getStates           = null; // args: void
+}
+
+Utils.isNotKillZone = function (world, position)
+{
+    if (!world)
+        return false;
+
+    let bounds = world.entities_0.array_hd7ov6$_0.at(0).components_0.array.at(0).bounds;
+
+    if (!bounds)
+        return false;
+
+    if (position.x != 0 && (position.x >= bounds.maxX || position.x <= bounds.minX))
+        return false;
+
+    if (position.y != 0 && (position.y >= bounds.maxY || position.y <= bounds.minY))
+        return false;
+
+if (position.z != 0 && (position.y >= bounds.maxZ || position.z <= bounds.minZ))
+        return false;
+
+    return true;
+}
+
+Utils.isGameReady = function ()
+{
+    let rootObject = Utils.getRootObject();
+
+    if (!rootObject)
+    {
+        return false;
+    }
+
+    if (!rootObject.store.state.battleStatistics.battleLoaded)
+    {
+        return false;
+    }
+
+    let localPlayer = GameObjects.getLocalPlayer();
+
+    if (!localPlayer)
+    {
+        return false;
+    }
+
+    if (localPlayer.length == 0)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+Utils.isPlayerEnemy = function(localPlayer, player)
+{
+    if (!player || !localPlayer)
+    {
+        return null;
+    }
+
+    if (!player.at(0))
+    {
+        return null;
+    }
+
+    let team = player.at(0).team;
+
+    if (!team)
+    {
+        return null;
+    }
+
+    let name$ = team.name$;
+
+    if (!name$)
+    {
+        return null;
+    }
+
+    if (localPlayer.at(0).team.name$ != "NONE" && localPlayer.at(0).team.name$ == name$)
+    {
+        return false;
+    }
+
+    return true;
+}
+
 class commons{
 getRoot = null
 getReactRoot = null
@@ -261,7 +369,7 @@ hacks.speedhack = function(){
 try{
 game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = slider.value
 game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = slider.value
-game.getAirwalk().speedCharacteristics_0.acceleration = slider2.value
+game.getTank().speedCharacteristics_0.acceleration = slider2.value
  
 }catch (error) {
  return Error
@@ -294,7 +402,7 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
     {
         
     
-            game.getTankPhysics().body.state.position.y -=100
+            game.getTankPhysics().body.state.position.y - speedhack;
     }
 
     if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null)
@@ -304,7 +412,7 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
        
            
 
-            game.getTankPhysics().body.state.position.x -=100
+            game.getTankPhysics().body.state.position.x - speedhack;
             
         
     }
@@ -314,7 +422,7 @@ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && g
         
 
        
-            game.getTankPhysics().body.state.position.x +=100
+            game.getTankPhysics().body.state.position.x + speedhack;
  
         
     }
@@ -887,7 +995,7 @@ function draggable(el) {
 
 
 title = document.createElement("span")
-title.innerText = "xeon"
+title.innerText = "xeon hack v2"
 hackWindow.appendChild(title)
 
 title_style = {
@@ -1900,7 +2008,7 @@ hackWindow.appendChild(page4)
 
 
 miscTitle = document.createElement("span")
-miscTitle.innerText = "xeon"
+miscTitle.innerText = "xeon hack v2"
 Object.assign(miscTitle.style,title_style)
 
 page3.addEventListener("click",page3func)
