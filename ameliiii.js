@@ -787,7 +787,7 @@ setTimeout(sapm,1500)
 
  if (KeyPressing.isKeyPressed(84 /*key: T*/) && Utils.isNotOpenChat())
     {
-                for (let i = 0; i < strikerData.shellCache.length; i++)
+                for (let i = 0; i < (vars.shellCache.length; i++)
         {
             strikerData.shellCache.at(i).components_0.array.at(1).position.x = targetBody.state.position.x;
             strikerData.shellCache.at(i).components_0.array.at(1).position.y = targetBody.state.position.y;
@@ -830,6 +830,7 @@ game.getWorld().physicsScene_0.gravity.z  = 0
 }
 
 function nt(){try {
+    game.getTankPhysics().body.state.orientation.w = 0;
 game.getTankPhysics().body.state.orientation.x = 0;
     game.getTankPhysics().body.state.orientation.y = 0;
   game.getTankPhysics().body.state.orientation.z = 0;
